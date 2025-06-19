@@ -9,9 +9,13 @@ $role=$_POST['role']??'';
   <title>Sign Up</title>
 </head>
 <body>
-  <h2>Sign Up as <?= htmlspecialchars($role) ?></h2> 
+ 
+  <link rel="stylesheet" href="signup.css">
   <input type="hidden" name="role" value="<?= htmlspecialchars($role) ?>">
 
+  <div class="singup">
+   <h2>Sign up as <?= htmlspecialchars($role) ?></h2> 
+  <br>
       <form action="signup.php" method="post" autocomplete="off">
             <label for="fullname">Full Name:</label>
             <input type="text" name="name" id="name" required><br>
