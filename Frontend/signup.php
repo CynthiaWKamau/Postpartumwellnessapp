@@ -25,7 +25,7 @@ $role=$_POST['role']??'';
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required><br>
             
-            <button type="submit" name="Signup">Sign Up</button>
+            <button type="submit" name="submit">Sign Up</button>
         </form>  
 
     </div> 
