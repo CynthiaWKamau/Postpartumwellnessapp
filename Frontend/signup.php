@@ -36,7 +36,14 @@
             <input type="password" name="password" id="password" required><br>
             
             <button type="submit" name="submit">Sign Up</button>
-        </form>  
+        </form> 
+        <table>
+            <thead>
+                <tr>
+                    <th><a href="login.php">Login</a></th>
+                </tr>
+            </thead>
+        </table> 
 
     </div> 
  </body>  
