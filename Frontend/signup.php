@@ -1,29 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Signup-Wellness Application</title>
+<!--signup.php-->
+<?php
+$role=$_POST['role']??'';
+?>
 
-    </head>
-    <body>
-        <div class="signup-box">
-            <h2>Choose your role</h2>
-<form action="" method="post" autocomplete="off">
-    <select name="role" required>
-        <option value="">--Select Role--</option>
-        <option value="mother">Postpartum Mother</option>
-        <option value="therapist">Therapist</option>
-        <option value="admin">Admin</option>
-    </select>
-    <br>
-    <button type="submit" name="submit">Next</button>
-</form>
-        </div>   
-      <div class="container">
-        <h2>Sign Up</h2>
-        <form action="" method="post" autocomplete="off">
-            <label for="name">Name:</label>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+</head>
+<body>
+  <h2>Sign Up as <?= htmlspecialchars($role) ?></h2> 
+  <input type="hidden" name="role" value="<?= htmlspecialchars($role) ?>">
+
+      <form action="signup.php" method="post" autocomplete="off">
+            <label for="fullname">Full Name:</label>
             <input type="text" name="name" id="name" required><br>
             
             <label for="username">Username:</label>
@@ -36,15 +26,49 @@
             <input type="password" name="password" id="password" required><br>
             
             <button type="submit" name="submit">Sign Up</button>
-        </form> 
-        <table>
-            <thead>
-                <tr>
-                    <th><a href="login.php">Login</a></th>
-                </tr>
-            </thead>
-        </table> 
+        </form>  
 
     </div> 
- </body>  
+
+    <?php
+// Connect to MySQL database
+require 'db_connection.php';
+
+ if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["name"], $_POST["username"], $_POST["email"], $_POST["password"])) {
+            $name = $_POST["name"];
+            $username = $_POST["username"];
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+
+            if ($password !== $password) {
+                echo "<script>alert('Passwords do not match');</script>";
+            } else {
+                $stmt = $conn->prepare("SELECT * FROM registration WHERE username=? OR email=?");
+                $stmt->bind_param("ss", $username, $email);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    echo "<script>alert('Username or Email has been taken');</script>";
+                } else {
+                    $stmt = $conn->prepare("INSERT INTO registration (name, username, email, password) VALUES (?, ?, ?, ?)");
+                    $stmt->bind_param("ssss", $name, $username, $email, $password);
+
+                    if ($stmt->execute()) {
+                        echo "<script>alert('Registration Successful');</script>";
+                    } else {
+                        echo "<script>alert('Registration Failed');</script>";
+                    }
+                }
+                $stmt->close();
+            }
+        }
+    }
+    ?>
+</body>
 </html>
+
+
+
+ 
