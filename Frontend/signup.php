@@ -20,5 +20,24 @@
     <button type="submit" name="submit">Next</button>
 </form>
         </div>   
-     </body>
+      <div class="container">
+        <h2>Sign Up</h2>
+        <form action="" method="post" autocomplete="off">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required><br>
+            
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br>
+            
+            <button type="submit" name="submit">Sign Up</button>
+        </form>  
+
+    </div> 
+ </body>  
 </html>
