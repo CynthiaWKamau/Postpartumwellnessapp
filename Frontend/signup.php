@@ -12,7 +12,7 @@ $role=$_POST['role']??'';
  
   <link rel="stylesheet" href="signup.css">
   
-  <div class="singup">
+  <div class="signup">
    <h2>Sign up as <?= htmlspecialchars($role) ?></h2> 
   <br>
       <form action="signup.php" method="post" autocomplete="off">
