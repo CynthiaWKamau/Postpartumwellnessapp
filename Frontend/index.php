@@ -13,10 +13,10 @@
     <!-- Navbar Section -->
     <div class="navbar">
         <div class="logo">logo</div>
-        <a href="#">Home</a>
-        <a href="#">Mood Tracker</a>
-        <a href="#">Journal Entries</a>
-        <a href="#">Personal Wallet</a>
+        <a href="Home">Home</a>
+        <a href="Mood tracker">Mood Tracker</a>
+        <a href="Journal entries">Journal Entries</a>
+        <a href="Personal wallet">Personal Wallet</a>
         <input class="search-bar" type="text" placeholder="Search">
     </div>
 
