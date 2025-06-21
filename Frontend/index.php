@@ -32,32 +32,23 @@
             journey every step of the way.</p>
     </main>
 
-    <!-- Wellness Highlights Section -->
-    <section class="highlights-section">
-        <div class="highlight-card">
-            <div class="icon pink-gradient">
-                <span>❤</span>
-            </div>
+    <!-- Features Section -->
+    <div class="features">
+        <div class="feature-card">
             <h3>Mood Tracking</h3>
-            <p>Monitor your emotional wellbeing with our intuitive mood tracker</p>
+            <p>Log and track daily emotions to understand and support your emotional well‑being postpartum.</p>
         </div>
+        <div class="feature-card">
+            <h3>Personal Journal</h3>
+            <p>Reflect and express thoughts and feelings in a safe space, creating a valuable record of your journey.
+            </p>
+        </div>
+        <div class="feature-card">
+            <h3>Online Therapy</h3>
+            <p>Connect with qualified therapists online for support and guidance during your postpartum recovery.</p>
+        </div>
+    </div>
 
-        <div class="highlight-card">
-            <div class="icon pink-gradient">
-                <span>✨</span>
-            </div>
-            <h3>Personal Journey</h3>
-            <p>Document your unique postpartum experience through journaling</p>
-        </div>
-
-        <div class="highlight-card">
-            <div class="icon pink-gradient">
-                <span>🛡️</span>
-            </div>
-            <h3>Safe Space</h3>
-            <p>A secure, judgment-free environment for your wellness journey</p>
-        </div>
-    </section>
 
 </body>
 
