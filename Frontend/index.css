@@ -1,27 +1,26 @@
-/* Reset default browser styles */
+/*  GENERAL STYLE */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* General body style */
 body {
-  font-family: 'Segoe UI', sans-serif;/*soft pink background*/
-  background-color: #ffe6f0; /* Soft pink */
-  color: #333;/*For the text to be readable*/
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #ffe6f0;
+  color: #333;
+  line-height: 1.6;
 }
 
-/* Navigation bar */
+/* NAVBAR */
 .navbar {
-  background-color: #ffeaf4;/*Light pink*/
+  background-color: #ffeaf4;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
 }
 
-/* Logo Button */
 .logo-button {
   background-color: #ffd6e8;
   padding: 8px 15px;
@@ -30,9 +29,16 @@ body {
   border-radius: 8px;
   color: #cc0066;
   cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-/* Navigation links */
+.logo-button:hover {
+  background-color: #ff99cc;
+  color: #fff;
+}
+
+/*  NAV LINKS*/
 .nav-links {
   display: flex;
   gap: 20px;
@@ -45,14 +51,15 @@ body {
   border-radius: 8px;
   color: #333;
   font-weight: 500;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .nav-links a:hover {
   background-color: #ffd6e8;
+  color: #cc0066;
 }
 
-/* Search bar */
+/* SEARCH */
 .search-bar {
   display: flex;
   align-items: center;
@@ -63,6 +70,7 @@ body {
   padding: 7px 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-size: 14px;
 }
 
 .search-bar button {
@@ -71,20 +79,25 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
 }
 
-/* Title */
+.search-bar button:hover {
+  background-color: #ff99cc;
+  color: #fff;
+}
+
+/*  PAGE TITLE */
 .app-title {
   font-size: 48px;
   font-weight: bold;
   color: #d63384;
   font-style: italic;
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 30px;
+  margin: 50px 0 30px;
 }
 
-/* About section */
+/* ABOUT US*/
 .about {
   width: 80%;
   max-width: 800px;
@@ -96,14 +109,17 @@ body {
 
 .about h2 {
   color: #d63384;
+  font-size: 28px;
   margin-bottom: 15px;
 }
 
 .about p {
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.7;
   margin-bottom: 15px;
 }
-/* Features Section Styles */
+
+/* FEATURE CARD*/
 .features {
   display: flex;
   justify-content: space-around;
@@ -116,7 +132,7 @@ body {
 
 .feature-card {
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 20px;
   margin: 10px;
   flex: 1 1 250px;
@@ -126,7 +142,7 @@ body {
 }
 
 .feature-card h3 {
-  font-size: 20px;
+  font-size: 22px;
   color: #d63384;
   margin-bottom: 10px;
 }
@@ -140,5 +156,3 @@ body {
   transform: translateY(-5px);
   box-shadow: 0px 5px 15px rgba(214, 51, 132, 0.3);
 }
-
-
