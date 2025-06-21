@@ -9,8 +9,17 @@
 </head>
 
 <body>
+    <style>
+    body {
+        background-image: url('c:\xampp\htdocs\Postpartumwellnessapp\Images\mamá.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    </style>
 
-    <!-- Navbar Section -->
+    <!-- Navbar Section 
+    -->
     <div class="navbar">
         <div class="logo">logo</div>
         <a href="Home">Home</a>
