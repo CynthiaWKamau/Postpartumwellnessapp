@@ -4,61 +4,47 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Postpartum Wellness Web Application</title>
-    <link rel="stylesheet" href="index.css" />
+    <title>Postpartum Wellness</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <style>
-    body {
-        background-image: url('c:\xampp\htdocs\Postpartumwellnessapp\Images\mamá.jpeg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    </style>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1> Postpartum Wellness </h1>
+        <h2>Web Application</h2>
+        <h3>ABOUT US</h3>
+        <p>Welcome to our postpartum wellness platform, designed specifically for new mothers navigating the beautiful
+            yet challenging journey of early motherhood. We understand that the postpartum period brings unique
+            physical, emotional, and mental health needs.</p>
+        <p>Our comprehensive web application provides you with the tools and support you need during this transformative
+            time. From mood tracking to personal journaling, we're here to support your wellness journey every step of
+            the way.</p>
+    </section>
 
-    <!-- Navbar Section 
-    -->
-    <div class="navbar">
-        <div class="logo">logo</div>
-        <a href="Home">Home</a>
-        <a href="Mood tracker">Mood Tracker</a>
-        <a href="Journal entries">Journal Entries</a>
-        <a href="Personal wallet">Personal Wallet</a>
-        <input class="search-bar" type="text" placeholder="Search">
+    <!-- FEATURES SECTION -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">♥️</div>
+            <h3>Emotional Support</h3>
+            <p>Track your mood and emotions with our intuitive tools designed for new mothers.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌟</div>
+            <h3>Personal Growth</h3>
+            <p>Document your journey with private journaling features and reflection tools.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Safe Space</h3>
+            <p>Your privacy and security are our priority in this judgment‑free environment.</p>
+        </div>
+    </section>
+
+    <!-- BUTTON -->
+    <div class="cta-button">
+        <a href="#">Start Your Wellness Journey</a>
     </div>
-
-    <!-- Main Section -->
-    <main class="main-content">
-        <h1>Postpartum Wellness Web-Application</h1>
-        <h2>About Us</h2>
-        <p>Welcome to our postpartum wellness platform, designed specifically for new mothers navigating the
-            beautiful yet challenging journey of early motherhood. We understand that the postpartum period brings
-            unique physical, emotional, and mental health needs.</p>
-        <p>Our comprehensive web application provides you with the tools and support you need during this
-            transformative time. From mood tracking to personal journaling, we're here to support your wellness
-            journey every step of the way.</p>
-    </main>
-
-    <!-- Features Section -->
-    <div class="features">
-        <div class="feature-card">
-            <h3>Mood Tracking</h3>
-            <p>Log and track daily emotions to understand and support your emotional well‑being postpartum.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Personal Journal</h3>
-            <p>Reflect and express thoughts and feelings in a safe space, creating a valuable record of your journey.
-            </p>
-        </div>
-        <div class="feature-card">
-            <h3>Online Therapy</h3>
-            <p>Connect with qualified therapists online for support and guidance during your postpartum recovery.</p>
-        </div>
-    </div>
-
-
 </body>
 
 </html>
