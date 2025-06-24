@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert into the login table
-        $sql = "INSERT INTO login (id, email, password) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO login (id, email, password,role) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
         if ($stmt === false) {
