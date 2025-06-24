@@ -70,8 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit">Login</button>
         </form>
 
+        <p><a href="forgot_password.php">Forgot Password?</a></p>
+        
         <?php if ($login_error): ?>
             <p style="color:red"><?= htmlspecialchars($login_error) ?></p>
+            
         <?php endif; ?>
     </div>
 </body>
