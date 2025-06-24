@@ -17,11 +17,13 @@ $role=$_POST['role']??'';
   <br>
       <form action="signup.php" method="post" autocomplete="off">
         
+           
+
             <label for="fullname">Full Name:</label>
-            <input type="text" name="name" id="name" required><br>
-            
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" required><br>
+            <input type="text" name="fullname" id="fullname" required><br>
+
+             <label for="id">Id:</label>
+            <input type="text" name="id" id="id" required><br>
             
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" required><br>
@@ -41,13 +43,15 @@ $role=$_POST['role']??'';
     </div> 
 
     <?php
+    
 // Connect to MySQL database
 require 'db_connection.php';
 
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["name"], $_POST["username"], $_POST["email"], $_POST["password"], $_POST["confirm_password"],$_POST["role"])) {
-            $name = $_POST["name"];
-            $username = $_POST["username"];
+        if (isset($_POST["fullname"], $_POST["id"], $_POST["email"], $_POST["password"], $_POST["confirm_password"],$_POST["role"])) {
+
+            $fullname = $_POST["fullname"];
+            $id = $_POST["id"];
             $email = $_POST["email"];
             $password = $_POST["password"];
             $confirm_password = $_POST["confirm_password"];
@@ -64,8 +68,8 @@ require 'db_connection.php';
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             //Check if username or email already exists 
-                $stmt = $conn->prepare("SELECT * FROM registration WHERE username=? OR email=?");
-                $stmt->bind_param("ss", $username, $email);
+                $stmt = $conn->prepare("SELECT * FROM users WHERE id=? OR email=?");
+                $stmt->bind_param("ss", $id, $email);
                 $stmt->execute();
                 $result = $stmt->get_result();
 
@@ -73,11 +77,11 @@ require 'db_connection.php';
                     echo "<script>alert('Username or Email has been taken');</script>";
                 } else {
                     //Insert new user into database
-                    $stmt = $conn->prepare("INSERT INTO registration (name, username, email, password, role,created_at) VALUES (?, ?, ?, ?, ?, ?)");
-                    $stmt->bind_param("ssssss", $name, $username, $email, $hashed_password,$role, $created_at);
+                    $stmt = $conn->prepare("INSERT INTO users (fullname, id, email, password, role,created_at) VALUES (?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("ssssss", $fullname, $id, $email, $hashed_password,$role, $created_at);
 
                     if ($stmt->execute()) {
-                        echo "<script>alert('Registration Successful');</script>";
+                       header("Location: login.php");
                     } else {
                         echo "<script>alert('Registration Failed');</script>";
                     }
