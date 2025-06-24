@@ -20,7 +20,7 @@ $role=$_POST['role']??'';
            
 
             <label for="fullname">Full Name:</label>
-            <input type="text" name="name" id="name" required><br>
+            <input type="text" name="fullname" id="fullname" required><br>
 
              <label for="id">Id:</label>
             <input type="text" name="id" id="id" required><br>
