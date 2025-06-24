@@ -1,51 +1,53 @@
 <?php
-    // Include database connection
-    include 'db_connection.php';
+// Include database connection
+include 'db_connection.php';
 
-    // Initialize variables to store user input
-    $id = $email = $password = '' ;
-    $login_error='';
+// Initialize error message
+$login_error = '';
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Sanitize and validate input
-        $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_SPECIAL_CHARS);
-        $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-        $password = $_POST["password"]; 
+// Process the form
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Sanitize input
+    $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_SPECIAL_CHARS);
+    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+    $password = $_POST["password"]; 
 
-        // Validate required fields
-        if (empty($id)) {
-            echo "<script>alert('Please enter a username');</script>";
-        } elseif (empty($email)) {
-            echo "<script>alert('Please enter a valid email');</script>";
-        } elseif (empty($password)) {
-            echo "<script>alert('Please enter a password');</script>";
+    // Validate required fields
+    if (empty($id)) {
+        $login_error = "Please enter an ID.";
+    } elseif (empty($email)) {
+        $login_error = "Please enter a valid email.";
+    } elseif (empty($password)) {
+        $login_error = "Please enter a password.";
+    } else {
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Insert into the login table
+        $sql = "INSERT INTO login (id, email, password) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+
+        if ($stmt === false) {
+            $login_error = "Prepare failed: " . htmlspecialchars($conn->error);
         } else {
-            // Prepare and execute the SQL query
-            $sql = "INSERT INTO login (id, email, password) VALUES (?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-
-            if ($stmt === false) {
-                die("Prepare failed: " . htmlspecialchars($conn->error));
-            }
-            // Bind parameters and execute query
-            $stmt->bind_param("sss", $id, $email, $password); 
+            $stmt->bind_param("sss", $id, $email, $hashed_password);
 
             if ($stmt->execute()) {
                 echo "<script>alert('Registration Successful');</script>";
                 header("Location: index.php");
                 exit();
             } else {
-                echo "<script>alert('Error: " . htmlspecialchars($stmt->error) . "');</script>";
+                $login_error = "Error: " . htmlspecialchars($stmt->error);
             }
 
-            // Close statement
             $stmt->close();
         }
     }
 
-    // Close connection
     $conn->close();
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +58,9 @@
     <div class="login">
         <h2>Login</h2>
         <form action="login.php" method="post" autocomplete="off">
+            <label>Id:</label>
+            <input type="text" name="id" required><br>
+
             <label>Email:</label>
             <input type="email" name="email" required><br>
 

@@ -81,7 +81,7 @@ require 'db_connection.php';
                     $stmt->bind_param("ssssss", $fullname, $id, $email, $hashed_password,$role, $created_at);
 
                     if ($stmt->execute()) {
-                        echo "<script>alert('Registration Successful');</script>";
+                       header("Location: login.php");
                     } else {
                         echo "<script>alert('Registration Failed');</script>";
                     }
