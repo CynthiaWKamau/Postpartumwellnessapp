@@ -3,7 +3,8 @@
     include 'db_connection.php';
 
     // Initialize variables to store user input
-    $id = $email = $password = '';
+    $id = $email = $password = '' ;
+    $login_error='';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Sanitize and validate input
@@ -45,3 +46,28 @@
     // Close connection
     $conn->close();
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login">
+        <h2>Login</h2>
+        <form action="login.php" method="post" autocomplete="off">
+            <label>Email:</label>
+            <input type="email" name="email" required><br>
+
+            <label>Password:</label>
+            <input type="password" name="password" required><br>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <?php if ($login_error): ?>
+            <p style="color:red"><?= htmlspecialchars($login_error) ?></p>
+        <?php endif; ?>
+    </div>
+</body>
+</html>
