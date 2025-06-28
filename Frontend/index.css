@@ -79,11 +79,12 @@ body {
 
 /* FEATURES SECTION */
 .features {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 40px 20px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  margin-top: -20px;
+  padding-top: 60px;
 }
+
 
 .feature-card {
     background-color: #fff;
