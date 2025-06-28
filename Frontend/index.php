@@ -18,18 +18,21 @@
     </nav>
     <!-- HERO SECTION -->
     <section class="hero">
-        <h1> Postpartum Wellness </h1>
-        <h2>Web Application</h2>
-        <h3>ABOUT US</h3>
-        <p>Welcome to our postpartum wellness platform, designed specifically for new mothers navigating the
-            beautiful
-            yet challenging journey of early motherhood. We understand that the postpartum period brings unique
-            physical, emotional, and mental health needs.</p>
-        <p>Our comprehensive web application provides you with the tools and support you need during this
-            transformative
-            time. From mood tracking to personal journaling, we're here to support your wellness journey every step
-            of
-            the way.</p>
+        <h1 class="app-name"><em>Luna Care</em></h1>
+
+        <div class="about-box">
+            <h2>ABOUT US</h2>
+            <p>
+                Welcome to our postpartum wellness platform, designed specifically for new mothers navigating the
+                beautiful yet challenging journey of early motherhood. We understand that the postpartum period brings
+                unique physical, emotional, and mental health needs.
+            </p>
+            <p>
+                Our comprehensive web application provides you with the tools and support you need during this
+                transformative time. From mood tracking to personal journaling, we're here to support your wellness
+                journey every step of the way.
+            </p>
+        </div>
     </section>
 
 
