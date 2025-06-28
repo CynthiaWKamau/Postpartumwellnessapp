@@ -5,29 +5,31 @@ $role=$_POST['role']??'';
 
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Sign Up</title>
+    <title>Sign Up</title>
 </head>
+
 <body>
- 
-  <link rel="stylesheet" href="signup.css">
-  
-  <div class="signup">
-   <h2>Sign up as <?= htmlspecialchars($role) ?></h2> 
-  <br>
-      <form action="signup.php" method="post" autocomplete="off">
-        
-           
+
+    <link rel="stylesheet" href="signup.css">
+
+    <div class="signup">
+        <h2>Sign up as <?= htmlspecialchars($role) ?></h2>
+        <br>
+        <form action="signup.php" method="post" autocomplete="off">
+
+
 
             <label for="fullname">Full Name:</label>
             <input type="text" name="fullname" id="fullname" required><br>
 
-             <label for="id">Id:</label>
+            <label for="id">Id:</label>
             <input type="text" name="id" id="id" required><br>
-            
+
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" required><br>
-            
+
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required><br>
 
@@ -36,16 +38,18 @@ $role=$_POST['role']??'';
 
             <input type="hidden" name="role" value="<?= htmlspecialchars($role) ?>">
 
-            
-            <button type="submit" name="submit">Sign Up</button>
-        </form>  
 
-    </div> 
+            <button type="submit" name="submit">Sign Up</button>
+        </form>
+
+    </div>
 
     <?php
     
 // Connect to MySQL database
 require 'db_connection.php';
+
+
 
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["fullname"], $_POST["id"], $_POST["email"], $_POST["password"], $_POST["confirm_password"],$_POST["role"])) {
@@ -82,6 +86,7 @@ require 'db_connection.php';
 
                     if ($stmt->execute()) {
                        header("Location: login.php");
+                       exit();
                     } else {
                         echo "<script>alert('Registration Failed');</script>";
                     }
@@ -91,8 +96,5 @@ require 'db_connection.php';
         }
     ?>
 </body>
+
 </html>
-
-
-
- 
