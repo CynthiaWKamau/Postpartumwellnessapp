@@ -43,7 +43,7 @@ body {
 
 /* HERO SECTION */
 .hero {
-  background-image: url('Images/Marble Wallpaper.jpeg');
+  background-image: url('Images/mamá.jpeg');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -126,15 +126,22 @@ body {
 }
 
 .feature-card {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 15px;
-    flex: 1 1 250px;
-    max-width: 300px;
-    box-shadow: 0px 2px 8px rgba(198, 63, 169, 0.2);
-    text-align: center;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px;
+  flex: 1 1 250px;
+  max-width: 300px;
+  box-shadow: 0px 2px 8px rgba(198, 63, 169, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.feature-card:hover {
+  transform: translateY(-8px); /* Slight lift */
+  box-shadow: 0px 8px 20px rgba(198, 63, 169, 0.4); /* Glow effect */
+}
+
 
 .feature-icon {
     font-size: 40px;
