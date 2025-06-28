@@ -44,7 +44,13 @@ body {
 /* HERO SECTION */
 .hero {
     padding: 50px 20px;
-    background: linear-gradient(180deg, #fddff9, #fef3ff);
+    background: linear-gradient(180deg, #fddff9, #fef3ff),
+                url('./Frontend/Images/mamá.jpeg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    color: black;
+    text-align: center;
+    padding-top: 100px;
 }
 
 .hero h1 {
@@ -68,20 +74,6 @@ body {
     margin: 10px auto;
     font-size: 18px;
     line-height: 1.5;
-}
-.hero {
- background-image: url('./Frontend/Images/mamá.jpeg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  color: black;
-  text-align: center;
-  padding-top: 100px;
-}
-.hero {
-  background: linear-gradient(180deg, #fddff9, #fef3ff),
-              url('./Frontend/Images/mamá.jpeg') no-repeat center center;
-  background-size: cover;
 }
 
 
