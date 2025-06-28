@@ -70,7 +70,7 @@ body {
     line-height: 1.5;
 }
 .hero {
-  background-image: url('Frontend/Images/mamá.jpeg');
+ background-image: url('./Frontend/Images/mamá.jpeg');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -78,6 +78,12 @@ body {
   text-align: center;
   padding-top: 100px;
 }
+.hero {
+  background: linear-gradient(180deg, #fddff9, #fef3ff),
+              url('./Frontend/Images/mamá.jpeg') no-repeat center center;
+  background-size: cover;
+}
+
 
 
 /* FEATURES SECTION */
