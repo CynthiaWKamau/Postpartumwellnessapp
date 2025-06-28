@@ -43,15 +43,14 @@ body {
 
 /* HERO SECTION */
 .hero {
-    padding: 50px 20px;
-    background: linear-gradient(180deg, #fddff9, #fef3ff),
-                url('./Frontend/Images/mamá.jpeg') no-repeat center center;
-    background-size: cover;
-    height: 100vh;
-    color: black;
-    text-align: center;
-    padding-top: 100px;
+  background-image: url('Images/mamá.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  text-align: center;
+  padding-top: 100px;
 }
+
 
 .hero h1 {
     font-size: 48px;
