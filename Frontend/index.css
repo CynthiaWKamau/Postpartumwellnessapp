@@ -7,6 +7,39 @@ body {
     color: #333;
     text-align: center;
 }
+/* Reset and basic page styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-around; /* Distributes links equally */
+  align-items: center;
+  background: linear-gradient(to right, #ff4db3, #9d4de8);
+  padding: 15px;
+}
+
+.nav-item {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-item:hover {
+  text-decoration: underline;
+}
+
 
 /* HERO SECTION */
 .hero {

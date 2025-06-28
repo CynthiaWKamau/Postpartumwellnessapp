@@ -9,6 +9,13 @@
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="home.php" class="nav-item"><span>🏠</span> Home</a>
+        <a href="mood_tracker.pho" class="nav-item"><span>♥️</span> Mood Tracker</a>
+        <a href="journal.php" class="nav-item"><span>📖</span> Journal Entries</a>
+        <a href="wallet.php" class="nav-item"><span>👛</span> Personal Wallet</a>
+    </nav>
     <!-- HERO SECTION -->
     <section class="hero">
         <h1> Postpartum Wellness </h1>
