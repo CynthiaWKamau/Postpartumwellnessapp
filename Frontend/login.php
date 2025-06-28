@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
     $password = $_POST["password"]; 
+     $role = $_POST["role"] ?? '';
 
     // Validate required fields
     if (empty($id)) {
@@ -19,18 +20,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $login_error = "Please enter a valid email.";
     } elseif (empty($password)) {
         $login_error = "Please enter a password.";
+        } elseif (empty($role)) {
+        $login_error = "Please select a role.";
     } else {
         // Hash the password
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert into the login table
-        $sql = "INSERT INTO login (id, email, password,role) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO login (id, email, password,role) VALUES (?, ?, ?,?)";
         $stmt = $conn->prepare($sql);
 
         if ($stmt === false) {
             $login_error = "Prepare failed: " . htmlspecialchars($conn->error);
         } else {
-            $stmt->bind_param("sss", $id, $email, $hashed_password);
+            $stmt->bind_param("ssss", $id, $email, $hashed_password,$role);
 
             if ($stmt->execute()) {
                 echo "<script>alert('Registration Successful');</script>";
@@ -66,7 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label>Password:</label>
             <input type="password" name="password" required><br>
-
+            
+            <input type="hidden" name="role" value="<?= htmlspecialchars($role) ?>">
+            
             <button type="submit">Login</button>
         </form>
 
