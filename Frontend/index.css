@@ -69,6 +69,16 @@ body {
     font-size: 18px;
     line-height: 1.5;
 }
+.hero {
+  background-image: url('Images/Marble Wallpaper.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: white;
+  text-align: center;
+  padding-top: 100px;
+}
+
 
 /* FEATURES SECTION */
 .features {
