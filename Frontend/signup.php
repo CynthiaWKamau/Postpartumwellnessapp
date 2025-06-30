@@ -8,11 +8,12 @@ $role=$_POST['role']??'';
 
 <head>
     <title>Sign Up</title>
+     <link rel="stylesheet" href="signup.css">
 </head>
 
 <body>
 
-    <link rel="stylesheet" href="signup.css">
+   
 
     <div class="signup">
         <h2>Sign up as <?= htmlspecialchars($role) ?></h2>
