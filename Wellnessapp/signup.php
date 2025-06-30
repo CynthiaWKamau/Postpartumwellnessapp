@@ -1,6 +1,7 @@
 <!--signup.php-->
 <?php
 $role=$_POST['role']??'';
+$signup_error = '';
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +53,7 @@ require 'db_connection.php';
 
 
 
- if ($_SERVER["REQUEST_METHOD"] == "POST") {
+ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         if (isset($_POST["fullname"], $_POST["id"], $_POST["email"], $_POST["password"], $_POST["confirm_password"],$_POST["role"])) {
 
             $fullname = $_POST["fullname"];
