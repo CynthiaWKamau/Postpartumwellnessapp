@@ -1,0 +1,68 @@
+/* Reset and font styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #662d91;
+  background: linear-gradient(to bottom right, #f5b7e4, #c9a3f3);
+}
+
+/* Navigation bar */
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px;
+  background: linear-gradient(to right, #e649b5, #9745e0);
+  color: white;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-item:hover {
+  text-decoration: underline;
+}
+
+/* Mood Tracker Content Section */
+.mood-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.mood-section h1 {
+  font-size: 48px;
+  font-style: italic;
+  font-weight: bold;
+  color: #662d91;
+  margin-bottom: 10px;
+}
+
+.mood-section h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #7d3c98;
+  margin-bottom: 30px;
+}
+
+.mood-section p {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #6a1b9a;
+}

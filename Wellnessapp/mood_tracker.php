@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mood Tracker | Luna Care</title>
-    <link rel="stylesheet" href="mood.css" />
+    <link rel="stylesheet" href="mood_tracker.css" />
 </head>
 
 <body>
