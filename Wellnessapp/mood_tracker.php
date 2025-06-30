@@ -27,6 +27,32 @@
             transformative time.
         </p>
     </section>
+    <!-- MOOD SELECTION SECTION -->
+    <section class="mood-selector">
+        <div class="mood-nav">
+            <button class="active">💗 Today's Mood</button>
+            <button>📅 Mood History</button>
+            <button>📈 Insights</button>
+        </div>
+
+        <h2 class="mood-heading">How are you feeling today?</h2>
+        <p class="mood-date">Monday, June 30, 2025</p>
+
+        <div class="mood-box">
+            <h3>Select Your Mood</h3>
+            <div class="mood-options">
+                <div class="mood-card">😊<span>Joyful</span></div>
+                <div class="mood-card">😌<span>Content</span></div>
+                <div class="mood-card">😐<span>Neutral</span></div>
+                <div class="mood-card">😰<span>Anxious</span></div>
+                <div class="mood-card">😢<span>Sad</span></div>
+                <div class="mood-card">😵‍💫<span>Overwhelmed</span></div>
+                <div class="mood-card">🥰<span>Grateful</span></div>
+                <div class="mood-card">😴<span>Tired</span></div>
+            </div>
+        </div>
+    </section>
+
 </body>
 
 </html>
