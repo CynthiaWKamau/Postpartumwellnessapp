@@ -126,7 +126,11 @@ body {
 }
 
 .feature-card {
+<<<<<<< HEAD
   background-color:pink;
+=======
+  background-color: rgba(177, 30, 30, 0.85);
+>>>>>>> 34592958b35e0e5629a32bbac695fdd1653b4371
   border-radius: 12px;
   padding: 20px;
   margin: 15px;
