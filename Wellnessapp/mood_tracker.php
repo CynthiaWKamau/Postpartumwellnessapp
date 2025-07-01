@@ -11,10 +11,10 @@
 <body>
     <!-- NAVIGATION BAR -->
     <nav class="navbar">
-        <a href="index.html" class="nav-item">🏠 Home</a>
-        <a href="mood.html" class="nav-item">💗 Mood Tracker</a>
-        <a href="journal.html" class="nav-item">📖 Journal Entries</a>
-        <a href="wallet.html" class="nav-item">👛 Personal Wallet</a>
+        <a href="index.php" class="nav-item">🏠 Home</a>
+        <a href="mood.php" class="nav-item">💗 Mood Tracker</a>
+        <a href="journal.php" class="nav-item">📖 Journal Entries</a>
+        <a href="wallet.php" class="nav-item">👛 Personal Wallet</a>
     </nav>
 
     <!-- MAIN SECTION -->
