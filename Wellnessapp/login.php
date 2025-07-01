@@ -22,11 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $login_error = "Please enter a password.";
     } else {    
     // Insert into the login table
-     $stmt = $conn->prepare("SELECT * FROM users WHERE id = ? AND email = ?");
+    $role = $_POST["role"] ?? '';
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ? AND email = ? AND role = ?");
 if ($stmt === false) {
     $login_error = "Database error: " . htmlspecialchars($conn->error);
 } else {
-    $stmt->bind_param("ss", $id, $email);
+    $stmt->bind_param("sss", $id, $email, $role);
+
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -77,7 +79,6 @@ if ($stmt === false) {
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="login.css">
-</head>
 
 <body>
     <div class="login">
@@ -96,6 +97,7 @@ if ($stmt === false) {
         </form>
 
         <p><a href="forgot_password.php">Forgot Password?</a></p>
+        <p><a href="signup.php">Don't have an account?</a></p>
 
         <?php if ($login_error): ?>
         <p style="color:red"><?= htmlspecialchars($login_error) ?></p>

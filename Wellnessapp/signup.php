@@ -1,6 +1,6 @@
 <!--signup.php-->
 <?php
-$role=$_POST['role']??'';
+$role = $_GET['role'] ?? $_POST['role'] ?? '';
 $signup_error = '';
 ?>
 
@@ -43,6 +43,7 @@ $signup_error = '';
 
             <button type="submit" name="submit">Sign Up</button>
         </form>
+    <p><a href="login.php">You have an account?</a></p>
 
     </div>
 
