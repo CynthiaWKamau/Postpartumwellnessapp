@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Subscription(models.Model):
-    Plan_choices=[
+    PLAN_CHOICES=[
         ('basic', 'Basic'),
         ('premium', 'Premium'),
         ('pro', 'Pro'),
