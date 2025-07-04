@@ -106,7 +106,7 @@
         <li>✔ Access to community forums (read-only)</li>
          <li>✔ Personalized daily affirmations</li>
       </ul>
-      <form method="POST" action="process_subscription.php">
+      <form class="subscription-form" data-plan="basic">
         <input type="hidden" name="plan" value="basic">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="tel" name="phone" placeholder="2547XXXXXXXX" required>
@@ -123,7 +123,7 @@
         <li>✔ Weekly expert tips</li>
         <li>✔ Access to member-only community Q&A threads</li>
       </ul>
-      <form method="POST" action="process_subscription.php">
+      <form class="subscription-form" data-plan="basic">
         <input type="hidden" name="plan" value="premium">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="tel" name="phone" placeholder="2547XXXXXXXX" required>
@@ -142,7 +142,7 @@
         <li>✔ Private mother’s network group (Pro-only)</li>
         <li>✔ Add partner access (father or caregiver)</li>
       </ul>
-      <form method="POST" action="process_subscription.php">
+     <form class="subscription-form" data-plan="basic">
         <input type="hidden" name="plan" value="pro">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="tel" name="phone" placeholder="2547XXXXXXXX" required>
@@ -151,6 +151,39 @@
     </div>
 
   </div>
+
+  <script>
+  document.querySelectorAll('.subscription-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const plan = this.dataset.plan;
+      const phone = this.querySelector('input[name="phone"]').value;
+
+      fetch('/api/initiate-payment/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone_number: phone,
+          plan: plan
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if (data.CustomerMessage) {
+          alert(data.CustomerMessage);
+        } else {
+          alert("STK push sent or simulated.");
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert("Something went wrong.");
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
