@@ -52,35 +52,39 @@
             </div>
         </div>
     </section>
-    <!-- Mood Influences Section -->
-    <section class="mood-influences">
-        <h2>What might have influenced your mood?</h2>
-        <div class="influences-tags">
-            <span>Sleep deprivation</span>
-            <span>Feeding challenges</span>
-            <span>Hormonal changes</span>
-            <span>Social support</span>
-            <span>Baby crying</span>
-            <span>Physical discomfort</span>
-            <span>Partner relationship</span>
-            <span>Self-care time</span>
-            <span>Family stress</span>
-            <span>Body changes</span>
-            <span>Milestone worries</span>
-            <span>Financial concerns</span>
+    <div class="mood-section-wrapper">
+
+        <!-- Influencing Factors -->
+        <section class="influencing-factors">
+            <h2>What might have influenced your mood?</h2>
+            <div class="tags">
+                <span>Sleep deprivation</span>
+                <span>Feeding challenges</span>
+                <span>Hormonal changes</span>
+                <span>Social support</span>
+                <span>Baby crying</span>
+                <span>Physical discomfort</span>
+                <span>Partner relationship</span>
+                <span>Self-care time</span>
+                <span>Family stress</span>
+                <span>Body changes</span>
+                <span>Milestone worries</span>
+                <span>Financial concerns</span>
+            </div>
+        </section>
+
+        <!-- Additional Notes -->
+        <section class="notes-section">
+            <h2>Additional Notes (Optional)</h2>
+            <textarea
+                placeholder="How are you feeling? What's on your mind today? Remember, every feeling is valid..."></textarea>
+        </section>
+
+        <!-- Save Button -->
+        <div class="save-button">
+            <button>Save Today's Mood 💕</button>
         </div>
-    </section>
 
-    <!-- Additional Notes Section -->
-    <section class="additional-notes">
-        <h2>Additional Notes (Optional)</h2>
-        <textarea
-            placeholder="How are you feeling? What's on your mind today? Remember, every feeling is valid..."></textarea>
-    </section>
-
-    <!-- Save Button -->
-    <div class="save-mood-button">
-        <button>Save Today's Mood 💕</button>
     </div>
 
 
