@@ -87,6 +87,12 @@
         </div>
 
     </div>
+    <form action="save_mood.php" method="POST">
+        <input type="hidden" name="mood" id="moodInput">
+        <textarea name="note" placeholder="Write a note..."></textarea>
+        <button type="submit">Save Mood Entry</button>
+    </form>
+
 </body>
 
 </html>
