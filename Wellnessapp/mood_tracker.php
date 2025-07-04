@@ -89,5 +89,6 @@
         </div>
 
     </div>
-</body </style>
-</style>
+</body>
+
+</html>
