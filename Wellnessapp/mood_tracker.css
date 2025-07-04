@@ -237,3 +237,24 @@ body {
 .save-button button:hover {
   opacity: 0.9;
 }
+.tags button.selected {
+  background-color: #d58df2;
+  color: white;
+  transform: scale(1.05);
+  font-weight: bold;
+}
+
+.history-entry.animate {
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
