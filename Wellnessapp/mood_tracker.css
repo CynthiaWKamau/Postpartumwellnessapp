@@ -159,5 +159,88 @@ body {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+/* Mood Influences Section */
+.mood-influences {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  margin: 30px auto;
+  border: 1px solid #eec7f9;
+  border-radius: 12px;
+  max-width: 90%;
+  text-align: left;
+}
+
+.mood-influences h2 {
+  color: #802cbf;
+  margin-bottom: 15px;
+}
+
+.influences-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.influences-tags span {
+  padding: 8px 16px;
+  background-color: #fff;
+  border: 1px solid #c185f5;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.influences-tags span:hover {
+  background-color: #f3ddfb;
+}
+
+/* Additional Notes Section */
+.additional-notes {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  margin: 30px auto;
+  border: 1px solid #eec7f9;
+  border-radius: 12px;
+  max-width: 90%;
+  text-align: left;
+}
+
+.additional-notes h2 {
+  color: #802cbf;
+  margin-bottom: 10px;
+}
+
+.additional-notes textarea {
+  width: 100%;
+  height: 120px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: none;
+}
+
+/* Save Button */
+.save-mood-button {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.save-mood-button button {
+  padding: 15px 35px;
+  background: linear-gradient(to right, #f74ca2, #802cbf);
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(198, 63, 169, 0.3);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.save-mood-button button:hover {
+  opacity: 0.9;
+}
 
 
