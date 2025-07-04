@@ -52,6 +52,9 @@
             </div>
         </div>
     </section>
+
+
+    </div>
     <div class="mood-section-wrapper">
 
         <!-- Influencing Factors -->
@@ -86,8 +89,5 @@
         </div>
 
     </div>
-
-
-</body>
-
-</html>
+</body </style>
+</style>
