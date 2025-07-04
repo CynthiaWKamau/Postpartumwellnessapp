@@ -14,14 +14,10 @@ $signup_error = '';
 
 <body>
 
-   
-
-    <div class="signup">
-        <h2>Sign up as <?= htmlspecialchars($role) ?></h2>
+    <div class="signup-container">
+          <h2>Sign Up as <span style="color:#d63384"><?= htmlspecialchars(ucwords($role)) ?></span></h2>
         <br>
         <form action="signup.php" method="post" autocomplete="off">
-
-
 
             <label for="fullname">Full Name:</label>
             <input type="text" name="fullname" id="fullname" required><br>
@@ -40,10 +36,9 @@ $signup_error = '';
 
             <input type="hidden" name="role" value="<?= htmlspecialchars($role) ?>">
 
-
             <button type="submit" name="submit">Sign Up</button>
+             <p class="login-link">Already have an account? <a href="login.php">Login</a></p>
         </form>
-    <p><a href="login.php">You have an account?</a></p>
 
     </div>
 
@@ -52,18 +47,16 @@ $signup_error = '';
 // Connect to MySQL database
 require 'db_connection.php';
 
-
-
  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         if (isset($_POST["fullname"], $_POST["id"], $_POST["email"], $_POST["password"], $_POST["confirm_password"],$_POST["role"])) {
 
-            $fullname = $_POST["fullname"];
-            $id = $_POST["id"];
-            $email = $_POST["email"];
-            $password = $_POST["password"];
-            $confirm_password = $_POST["confirm_password"];
-            $role = $_POST["role"];
-            $created_at = date("Y-m-d H:i:s");
+        $fullname = trim($_POST["fullname"]);
+        $id = trim($_POST["id"]);
+        $email = trim($_POST["email"]);
+        $password = $_POST["password"];
+        $confirm_password = $_POST["confirm_password"];
+        $role = $_POST["role"];
+        $created_at = date("Y-m-d H:i:s");
 
             //Password match validation
             if ($password !== $confirm_password) {
