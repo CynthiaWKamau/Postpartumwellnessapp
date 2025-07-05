@@ -11,22 +11,19 @@
 <body>
     <div class="login">
         <h2>Reset Your Password</h2>
-       <form action="forgot_password.php" method="post">
+      <h2>Forgot Your Password?</h2>
+<form action="forgot_password.php" method="post">
     <label>Enter your registered email:</label>
     <input type="email" name="email" required><br>
-
-    <label>New Password:</label>
-    <input type="password" name="new_password" required><br>
-
-    <label>Confirm New Password:</label>
-    <input type="password" name="confirm_password" required><br>
-
-    <button type="submit">Reset Password</button>
-    </form>
+    <button type="submit">Send Reset Link</button>
+</form>
 
     </div>
    <?php
 require 'db_connection.php';
+require 'vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 $reset_error='';
 $reset_success='';
@@ -34,13 +31,6 @@ $reset_success='';
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"] ?? '';
-    $new_password = $_POST["new_password"] ?? '';
-    $confirm_password = $_POST["confirm_password"] ?? '';
-
-    if ($new_password !== $confirm_password) {
-        echo "<script>alert('Passwords do not match'); window.history.back();</script>";
-        exit;
-    }
 
     // Check if email exists in users table
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
@@ -49,24 +39,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result && $result->num_rows > 0) {
+          $token = bin2hex(random_bytes(32));
+        $expiry = date("Y-m-d H:i:s", strtotime("+1 hour"));
 
-        // Update password
-        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-        $update = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
-        $update->bind_param("ss", $hashed_password, $email);
+          // Save token
+        $update = $conn->prepare("UPDATE users SET reset_token = ?, token_expiry = ? WHERE email = ?");
+        $update->bind_param("sss", $token, $expiry, $email);
+        $update->execute();
 
-        if ($update->execute()) {
-            echo "<script>alert('Password reset successful!'); window.location.href='login.php';</script>";
-        } else {
-            echo "<script>alert('Failed to reset password.'); window.history.back();</script>";
+         // Email reset link
+        $reset_link = "http://localhost/Postpartumwellnessapp/Wellnessapp/reset_password.php?token=$token";
+
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'ck697315@gmail.com';  // replace with yours
+            $mail->Password = 'nxhejtxupexkwegm';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('ck697315@gmail.com', 'Lunacaremailer');
+            $mail->addAddress($email);
+            $mail->isHTML(true);
+            $mail->Subject = 'Reset Your Luna Care Password';
+            $mail->Body = "Click the link below to reset your password:<br><br>
+                <a href='$reset_link'>$reset_link</a><br><br>
+                This link will expire in 1 hour.";
+
+            $mail->send();
+            echo "<script>alert('Reset link sent to your email'); window.location.href='login.php';</script>";
+        } catch (Exception $e) {
+            echo "❌ Email could not be sent. Error: {$mail->ErrorInfo}";
         }
-        $update->close();
     } else {
-        echo "<script>alert('Email not found.'); window.history.back();</script>";
+        echo "<script>alert('Email not found'); window.history.back();</script>";
     }
-    $stmt->close();
 }
 ?>
-
 </body>
 </html>

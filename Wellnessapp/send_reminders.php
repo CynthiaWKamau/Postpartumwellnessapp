@@ -1,4 +1,5 @@
 <?php
+//detects where errors are
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -40,6 +41,9 @@ while ($row = $result->fetch_assoc()) {
         $mail->addAddress($row['email'], $row['fullname']);
 
         $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'base64';
+
         $mail->Subject = '🧠 Therapy Appointment Reminder – Luna Care';
         $mail->Body    = "
             Hello {$row['fullname']},<br><br>
