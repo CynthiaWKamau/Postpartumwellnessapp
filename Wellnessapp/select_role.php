@@ -55,7 +55,7 @@
     <body>
         <div class="signup-box">
             <h2>Choose your role</h2>
-       <a href="signup.php?role=mother">Postpartum Mother</a><br>
+       <a href="signup.php?role=postpartum mother">Postpartum Mother</a><br>
        <a href="signup.php?role=therapist">Therapist</a><br>
        <a href="signup.php?role=admin">Admin</a><br>
 </div>

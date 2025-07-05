@@ -1,8 +1,6 @@
 <?php
-session_start();
-if ($_SESSION['role'] !== 'postpartum mother') {
-    header("Location: ../login.php");
-    exit();
-}
+include '../auth.php';
+require_role('postpartum mother');
 ?>
+
 <h2>Welcome, Mama <?= htmlspecialchars($_SESSION['fullname']) ?></h2>

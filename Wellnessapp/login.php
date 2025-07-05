@@ -22,8 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $login_error = "Please enter a password.";
     } else {    
     // Insert into the login table
-    $role = $_POST["role"] ?? '';
-$stmt = $conn->prepare("SELECT * FROM users WHERE id = ? AND email = ? AND role = ?");
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ? AND email = ?");
 if ($stmt === false) {
     $login_error = "Database error: " . htmlspecialchars($conn->error);
 } else {
@@ -38,8 +37,6 @@ if ($stmt === false) {
 
             if (password_verify($password, $user['password'])) {
                 // Login success
-                $_SESSION['id'] = $user['id'];
-                $_SESSION['fullname'] = $user['fullname'];
                 $_SESSION['role'] = $user['role'];
 
                 // Redirect to the correct dashboard
@@ -51,7 +48,7 @@ if ($stmt === false) {
                         header("Location: Therapist/dashboard.php");
                         break;
                     case 'postpartum mother':
-                        header("Location: Mother/dashboard.php");
+                        header("Location: Postpartum Mother/dashboard.php");
                         break;
                     default:
                         $login_error = "Unknown user role.";
