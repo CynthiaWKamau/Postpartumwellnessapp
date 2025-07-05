@@ -1,5 +1,4 @@
 <?php
-session_start();
 // Include database connection
 include 'db_connection.php';
 
@@ -12,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
     $password = $_POST["password"]; 
-   
+
     // Validate required fields
     if (empty($id)) {
         $login_error = "Please enter an ID.";
@@ -20,54 +19,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $login_error = "Please enter a valid email.";
     } elseif (empty($password)) {
         $login_error = "Please enter a password.";
-    } else {    
-    // Insert into the login table
-$stmt = $conn->prepare("SELECT * FROM users WHERE id = ? AND email = ?");
-if ($stmt === false) {
-    $login_error = "Database error: " . htmlspecialchars($conn->error);
-} else {
-    $stmt->bind_param("sss", $id, $email, $role);
-
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-        
-         if ($result && $result->num_rows === 1) {
-            $user = $result->fetch_assoc();
-
-            if (password_verify($password, $user['password'])) {
-                // Login success
-                $_SESSION['role'] = $user['role'];
-
-                // Redirect to the correct dashboard
-                switch ($user['role']) {
-                    case 'admin':
-                        header("Location: Admin/dashboard.php");
-                        break;
-                    case 'therapist':
-                        header("Location: Therapist/dashboard.php");
-                        break;
-                    case 'postpartum mother':
-                        header("Location: Postpartum Mother/dashboard.php");
-                        break;
-                    default:
-                        $login_error = "Unknown user role.";
-                        break;
-                }
-                exit();
-            } else {
-                $login_error = "Incorrect password.";
-            }
+    } else {
+        //process login
+        $stmt = $conn->prepare("SELECT * FROM users WHERE id = ? AND email = ?");
+        if ($stmt === false) {
+            $login_error = "Database error: " . htmlspecialchars($conn->error);
         } else {
-            $login_error = "User not found with provided ID and email.";
-        }
+            $stmt->bind_param("is", $id, $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-        $stmt->close();
+            if ($result && $result->num_rows === 1) {
+                $user = $result->fetch_assoc();
+
+                if (password_verify($password, $user['password'])) {
+                    // Login success
+                    $_SESSION['id'] = $user['id'];
+                    $_SESSION['fullname'] = $user['fullname'];
+                    $_SESSION['role'] = $user['role'];
+
+                    // Redirect to the correct dashboard
+                    switch ($user['role']) {
+                        case 'admin':
+                            header("Location: Admin/dashboard.php");
+                            break;
+                        case 'therapist':
+                            header("Location: Therapist/dashboard.php");
+                            break;
+                        case 'postpartum mother':
+                            header("Location: postpartummother.php");
+                            break;
+                        default:
+                            $login_error = "Unknown user role.";
+                            break;
+                    }
+                    exit();
+                } else {
+                    $login_error = "Incorrect password.";
+                }
+            } else {
+                $login_error = "User not found with provided ID and email.";
+            }
+
+            $stmt->close();
         }
     }
-
-    $conn->close();
 }
+
 ?>
 
 <!DOCTYPE html>
