@@ -5,7 +5,6 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 include 'db_connection.php'; 
-
 $user_id = $_SESSION['id'];
 ?>
 
@@ -27,6 +26,62 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(to bottom right, #ffe0f0, #fbefff);
   color: #663366;
+}
+.mood-nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  background: #fbe7f2;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(242, 144, 186, 0.2);
+}
+
+.mood-nav button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  color: #c74d9c;
+  font-size: 16px;
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.mood-nav button:hover {
+  background-color: #f8a8d4;
+  color: white;
+}
+
+.mood-history-entry {
+  margin-bottom: 15px;
+  border-radius: 12px;
+  background: #fff0fa;
+  padding: 10px;
+  border-left: 5px solid #d484c4;
+}
+
+.history-toggle {
+  background: none;
+  border: none;
+  color: #d444b3;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #f4c5e7;
+}
+
+.mood-detail {
+  padding: 10px 15px;
+}
+
+.hidden {
+  display: none;
 }
 
 /* Navbar */
@@ -168,24 +223,6 @@ textarea:focus {
 <a href="logout.php">🚪 Logout</a>
 
   </nav>
-  <section class="journal-section">
-    <h1>📝 Reflect & Release</h1>
-    <p>Write freely about your thoughts, emotions, and experiences. This is your safe space to heal and grow.</p>
-
-      <?php if (isset($_GET['success'])): ?>
-  <p style="text-align:center; color:green;">Your journal entry has been saved 💖</p>
-<?php elseif (isset($_GET['error']) && $_GET['error'] === 'empty'): ?>
-  <p style="text-align:center; color:red;">Journal entry cannot be empty.</p>
-<?php endif; ?>
-
-    <form action="save_journal.php" method="POST">
-      <textarea name="entry" placeholder="Start writing your thoughts here..."></textarea>
-      <div class="btn-area">
-        <button type="submit">Save Journal Entry</button>
-      </div>
-
-    </form>
-  </section>
 
    <!-- Start of Previous Journal Entries Section -->
   <?php
@@ -196,20 +233,64 @@ textarea:focus {
   $entries_result = $entries_query->get_result();
   ?>
   <section class="journal-section">
-    <h2 style="margin-top: 40px;">📚 Previous Journal Entries</h2>
+  <h1>📔 Journal</h1>
+
+  <!-- Tab Buttons -->
+  <div class="mood-nav" style="margin-bottom: 30px;">
+    <button onclick="showJournalTab('write')">📝 Reflect & Release</button>
+    <button onclick="showJournalTab('history')">📚 Previous Entries</button>
+  </div>
+
+  <!-- ✍️ Reflect & Release Form -->
+  <div id="write" class="journal-tab">
+    <p>Write freely about your thoughts, emotions, and experiences. This is your safe space to heal and grow.</p>
+
+    <?php if (isset($_GET['success'])): ?>
+      <p style="text-align:center; color:green;">Your journal entry has been saved 💖</p>
+    <?php elseif (isset($_GET['error']) && $_GET['error'] === 'empty'): ?>
+      <p style="text-align:center; color:red;">Journal entry cannot be empty.</p>
+    <?php endif; ?>
+
+    <form action="save_journal.php" method="POST">
+      <textarea name="entry" placeholder="Start writing your thoughts here..."></textarea>
+      <div class="btn-area">
+        <button type="submit">Save Journal Entry</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 📚 Previous Entries -->
+  <div id="history" class="journal-tab" style="display: none;">
 
     <?php if ($entries_result->num_rows > 0): ?>
       <?php while ($row = $entries_result->fetch_assoc()): ?>
-        <div style="text-align: left; margin-top: 20px; padding: 20px; background-color: #fff0fa; border-left: 5px solid #d484c4; border-radius: 12px;">
-          <p><strong>Date:</strong> <?= date("F j, Y - g:i a", strtotime($row['date_logged'])) ?></p>
-          <p><?= nl2br(htmlspecialchars($row['entry'])) ?></p>
+        <div class="mood-history-entry">
+          <button class="history-toggle"><?= date("F j, Y - g:i A", strtotime($row['date_logged'])) ?></button>
+          <div class="mood-detail hidden">
+            <p><?= nl2br(htmlspecialchars($row['entry'])) ?></p>
+          </div>
         </div>
       <?php endwhile; ?>
     <?php else: ?>
       <p style="color: gray;">You haven’t written any journal entries yet.</p>
     <?php endif; ?>
-  </section>
-  <!-- 🌸 End of Previous Journal Entries Section -->
+  </div>
+</section>
+
+<script>
+function showJournalTab(id) {
+  const tabs = document.querySelectorAll('.journal-tab');
+  tabs.forEach(tab => tab.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+
+document.querySelectorAll('.history-toggle').forEach((btn) => {
+  btn.addEventListener('click', function () {
+    const detail = this.nextElementSibling;
+    detail.classList.toggle('hidden');
+  });
+});
+</script>
 
 </body>
 </html>
