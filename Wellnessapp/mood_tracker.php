@@ -130,23 +130,47 @@ $result = $stmt->get_result();
   <section class="mood-section">
     <h2>📅 Mood History</h2>
     <?php if ($result->num_rows > 0): ?>
-     <?php $i = 0; ?>
-<?php while ($row = $result->fetch_assoc()): ?>
-  <?php $i++; ?>
+      <?php $i = 0; ?>
+      <?php while ($row = $result->fetch_assoc()): ?>
+        <?php $i++; ?>
+        <div class="mood-history-entry">
+          <button class="history-toggle" onclick="toggleMoodDetail(<?= $i ?>)">
+            📅 <?= date("F j, Y - g:i A", strtotime($row['date_logged'])) ?>
+          </button>
+          <div id="mood-detail-<?= $i ?>" class="mood-detail hidden">
+            <p><strong>Mood:</strong> <?= htmlspecialchars($row['mood']) ?></p>
+            <p><strong>Factors:</strong> <?= htmlspecialchars($row['influencing_factors']) ?></p>
+            <p><strong>Notes:</strong> <?= nl2br(htmlspecialchars($row['notes'])) ?></p>
+          </div>
+        </div>
+      <?php endwhile; ?>
+    <?php else: ?>
+      <p style="color: gray;">You haven’t tracked any moods yet.</p>
+    <?php endif; ?>
+  </section>
+</div>
 
-  <div class="mood-history-entry">
-    <button class="history-toggle" onclick="toggleMoodDetail(<?= $i ?>)">
-      📅 <?= date("F j, Y - g:i A", strtotime($row['date_logged'])) ?>
-    </button>
-    <div id="mood-detail-<?= $i ?>" class="mood-detail hidden">
-      <p><strong>Mood:</strong> <?= htmlspecialchars($row['mood']) ?></p>
-      <p><strong>Factors:</strong> <?= htmlspecialchars($row['influencing_factors']) ?></p>
-      <p><strong>Notes:</strong> <?= nl2br(htmlspecialchars($row['notes'])) ?></p>
-    </div>
-  </div>
-<?php endwhile; ?>
-
-  <p style="color: gray;">You haven’t tracked any moods yet.</p>
+<!-- 📅 Mood History Section -->
+<div id="history" class="mood-content-section" style="display: none;">
+  <section class="mood-section">
+    <h2>📅 Mood History</h2>
+    <?php if ($result->num_rows > 0): ?>
+      <?php $i = 0; ?>
+      <?php while ($row = $result->fetch_assoc()): ?>
+        <?php $i++; ?>
+        <div class="mood-history-entry">
+          <button class="history-toggle" onclick="toggleMoodDetail(<?= $i ?>)">
+            📅 <?= date("F j, Y - g:i A", strtotime($row['date_logged'])) ?>
+          </button>
+          <div id="mood-detail-<?= $i ?>" class="mood-detail hidden">
+            <p><strong>Mood:</strong> <?= htmlspecialchars($row['mood']) ?></p>
+            <p><strong>Factors:</strong> <?= htmlspecialchars($row['influencing_factors']) ?></p>
+            <p><strong>Notes:</strong> <?= nl2br(htmlspecialchars($row['notes'])) ?></p>
+          </div>
+        </div>
+      <?php endwhile; ?>
+    <?php else: ?>
+      <p style="color: gray;">You haven’t tracked any moods yet.</p>
     <?php endif; ?>
   </section>
 </div>
@@ -155,42 +179,44 @@ $result = $stmt->get_result();
 <div id="insight" class="mood-content-section" style="display: none;">
   <section class="mood-section">
     <h2>📈 Mood Insights</h2>
-  <?php if ($latest_mood): ?>
-  <p><strong>Last Logged Mood:</strong> <?= htmlspecialchars($latest_mood['mood']) ?> on <?= date("F j, Y", strtotime($latest_mood['date_logged'])) ?></p>
-  
-  <?php
-    $suggestion = "";
-    switch ($latest_mood['mood']) {
-      case "Sad":
-        $suggestion = "It's okay to feel down sometimes. Try journaling, cuddling your baby, or talking to someone you trust.";
-        break;
-      case "Anxious":
-        $suggestion = "Take a few deep breaths. Gentle stretching or stepping outside for a few minutes may help ease anxiety.";
-        break;
-      case "Happy":
-        $suggestion = "Yay! Celebrate this moment. Maybe share it in your journal so you can revisit it later!";
-        break;
-      case "Okay":
-        $suggestion = "You're doing alright. Consider doing one small thing today just for *you*.";
-        break;
-      case "Angry":
-        $suggestion = "Take a moment to pause. It’s okay to feel angry — try expressing it through writing or a short walk.";
-        break;
-      case "Excited":
-        $suggestion = "Hold on to this positive energy! Maybe channel it into a fun activity or creative task.";
-        break;
-      default:
-        $suggestion = "However you're feeling, you're not alone. This space is here for you.";
-        break;
-    }
-  ?>
-  <div style="margin-top: 20px; background: #fff6fc; padding: 15px; border-left: 4px solid #e48fc7; border-radius: 10px;">
-    <p><strong>Suggestion:</strong> <?= $suggestion ?></p>
-  </div>
-<?php else: ?>
-  <p style="color: gray;">Log your first mood to get personalized suggestions and insights 💡</p>
-<?php endif; ?>
-
+    <?php if (!empty($latest_mood)): ?>
+      <div class="mood-history-entry">
+        <button class="history-toggle" onclick="toggleInsightDetail()">
+          <?= htmlspecialchars($latest_mood['mood']) ?> on <?= date("F j, Y - g:i A", strtotime($latest_mood['date_logged'])) ?>
+        </button>
+        <div id="insight-detail" class="mood-detail hidden">
+          <?php
+            $suggestion = "";
+            switch ($latest_mood['mood']) {
+              case "Sad":
+                $suggestion = "It's okay to feel down sometimes. Try journaling, cuddling your baby, or talking to someone you trust.";
+                break;
+              case "Anxious":
+                $suggestion = "Take a few deep breaths. Gentle stretching or stepping outside for a few minutes may help ease anxiety.";
+                break;
+              case "Happy":
+                $suggestion = "Yay! Celebrate this moment. Maybe share it in your journal so you can revisit it later!";
+                break;
+              case "Okay":
+                $suggestion = "You're doing alright. Consider doing one small thing today just for *you*.";
+                break;
+              case "Angry":
+                $suggestion = "Take a moment to pause. It’s okay to feel angry — try expressing it through writing or a short walk.";
+                break;
+              case "Excited":
+                $suggestion = "Hold on to this positive energy! Maybe channel it into a fun activity or creative task.";
+                break;
+              default:
+                $suggestion = "However you're feeling, you're not alone. This space is here for you.";
+                break;
+            }
+          ?>
+          <p><strong>Suggestion:</strong> <?= $suggestion ?></p>
+        </div>
+      </div>
+    <?php else: ?>
+      <p style="color: gray;">Log your first mood to get personalized suggestions and insights 💡</p>
+    <?php endif; ?>
   </section>
 </div>
 
@@ -206,6 +232,11 @@ $result = $stmt->get_result();
     function toggleMoodDetail(id) {
     const section = document.getElementById('mood-detail-' + id);
     section.classList.toggle('hidden');
+  }
+
+  function toggleInsightDetail() {
+    const detail = document.getElementById("insight-detail");
+    detail.classList.toggle("hidden");
   }
 
   const moodCards = document.querySelectorAll(".mood-card");

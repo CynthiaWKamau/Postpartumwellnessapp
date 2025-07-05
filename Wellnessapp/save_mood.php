@@ -2,6 +2,9 @@
 session_start();
 include 'db_connection.php';
 
+// Set timezone
+date_default_timezone_set('Africa/Nairobi');
+
 $user_id = $_SESSION['id']; 
 $mood = $_POST['mood'] ?? '';
 $notes = $_POST['note'] ?? '';

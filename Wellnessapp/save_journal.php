@@ -7,6 +7,9 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
+// Set timezone
+date_default_timezone_set('Africa/Nairobi');
+
 $user_id = $_SESSION['id'];
 $entry = $_POST['entry'] ?? '';
 $date_logged = date("Y-m-d H:i:s");
