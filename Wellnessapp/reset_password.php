@@ -1,6 +1,9 @@
 <?php
 require 'db_connection.php';
-// reset_password.php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+//Get token from URL or POST
 $token = $_GET['token'] ?? '';
 $success = '';
 $error = '';
@@ -15,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "❌ Passwords do not match.";
     } else {
         // Find user with the token
-       $stmt = $conn->prepare("SELECT email FROM users WHERE token = ? AND created_at >= NOW() - INTERVAL 1 HOUR");
+       $stmt = $conn->prepare("SELECT email FROM users WHERE reset_token = ? AND token_expiry >= NOW()");
         $stmt->bind_param("s", $token);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -24,17 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row = $result->fetch_assoc();
             $email = $row['email'];
 
-            // Update password
+            // Update password and clear token
             $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
             $update = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
             $update->bind_param("ss", $hashed_password, $email);
 
-            if ($update->execute()) {
+        if ($update->execute()) {
                 $success = "✅ Password updated successfully. <a href='login.php'>Click here to login</a>";
-                // Delete the token
-                $delete = $conn->prepare("DELETE FROM password_resets WHERE token = ?");
-                $delete->bind_param("s", $token);
-                $delete->execute();
             } else {
                 $error = "❌ Failed to update password.";
             }
@@ -54,6 +53,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="login">
         <h2>Set New Password</h2>
+         <!-- Show success or error -->
+        <?php if ($success): ?>
+            <p style="color: green;"><?php echo $success; ?></p>
+        <?php elseif ($error): ?>
+            <p style="color: red;"><?php echo $error; ?></p>
+        <?php endif; ?>
+
+        <!-- Hide form if success -->
+        <?php if (!$success): ?>
+
         <form action="reset_password.php" method="post">
             <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
 
@@ -65,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <button type="submit">Update Password</button>
         </form>
+        <?php endif; ?>
     </div>
 </body>
 </html>

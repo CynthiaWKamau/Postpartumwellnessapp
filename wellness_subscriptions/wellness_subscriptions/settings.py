@@ -136,3 +136,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# === Safaricom Daraja API Settings ===
+
+DARAJA_CONSUMER_KEY = '15sTBlHmq8RR5Tgb47YXHc4CaJ9NsMKiCKBMkNgc4OiyOR1G'
+DARAJA_CONSUMER_SECRET = 'p0B6ahZVgwVpizREZU5F4ayo8jx5Y4BkLcCG1ZQuIyyyAsmgqGdImj1UJl1v2l8I'
+DARAJA_PASSKEY = 'YOUR_PASSKEY'
+DARAJA_SHORTCODE = '174379'  
+DARAJA_CALLBACK_URL = 'https://yourdomain.com/api/payment/callback/'  
+
+# enabling email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ck697315@gmail.com'  
+EMAIL_HOST_PASSWORD = 'nxhejtxupexkwegm'  
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
