@@ -40,7 +40,7 @@ def initiate_payment(request):
             plan_amounts = {
                 'basic': 2000,
                 'premium': 5000,
-                'pro': 1000
+                'pro': 10000
             }
             amount = plan_amounts.get(plan, 0)
 
