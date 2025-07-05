@@ -9,15 +9,7 @@
 </head>
 
 <body>
-    <!-- NAVIGATION BAR -->
-    <nav class="navbar">
-        <a href="index.php" class="nav-item">🏠 Home</a>
-        <a href="mood.php" class="nav-item">💗 Mood Tracker</a>
-        <a href="journal.php" class="nav-item">📖 Journal Entries</a>
-        <a href="wallet.php" class="nav-item">👛 Personal Wallet</a>
 
-
-    </nav>
 
     <!-- MAIN SECTION -->
     <section class="mood-section">
