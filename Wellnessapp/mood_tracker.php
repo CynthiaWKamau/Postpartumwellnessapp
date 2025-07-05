@@ -9,6 +9,14 @@
 </head>
 
 <body>
+    <!-- Navigation -->
+  <nav class="navbar">
+    <a href="postpartummother.php">💗 Main Page</a>
+    <a href="mood_tracker.php">💗 Mood Tracker</a>
+    <a href="journal.php">📖 Journal</a>
+    <a href="subscribe.php">💳 Subscription</a>
+    <a href="book_appointment.php">📅 Book Appointment</a>
+  </nav>
 
 
     <!-- MAIN SECTION -->

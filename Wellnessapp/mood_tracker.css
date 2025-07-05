@@ -37,6 +37,31 @@ body {
 .nav-item:hover {
   background-color: #f772a7;
 }
+ .navbar {
+      background-color: #f9c5d1;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border-bottom: 2px solid #fcdce5;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #4a3b47;
+      font-weight: 600;
+      background-color: #fff0f6;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 2px 6px rgba(255, 192, 203, 0.3);
+    }
+
+    .navbar a:hover {
+      background-color: #ffb6c1;
+      color: white;
+    }
 
 /* Main Mood Section */
 .mood-section {
