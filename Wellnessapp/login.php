@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             header("Location: Admin/dashboard.php");
                             break;
                         case 'therapist':
-                            header("Location: Therapist/dashboard.php");
+                            header("Location: therapist.php");
                             break;
                         case 'postpartum mother':
                             header("Location: postpartummother.php");
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
         <p><a href="forgot_password.php">Forgot Password?</a></p>
-        <p><a href="signup.php">Don't have an account?</a></p>
+        <p><a href="select_role.php">Don't have an account?</a></p>
 
         <?php if ($login_error): ?>
         <p style="color:red"><?= htmlspecialchars($login_error) ?></p>

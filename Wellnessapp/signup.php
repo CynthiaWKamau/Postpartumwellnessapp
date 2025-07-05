@@ -9,8 +9,95 @@ $signup_error = '';
 
 <head>
     <title>Sign Up</title>
-     <link rel="stylesheet" href="signup.css">
+
 </head>
+<style>
+    body {
+  background: #ffe6f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.signup-container {
+  background-color: #fff0f5;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.2);
+  max-width: 430px;
+  margin: 80px auto;
+  padding: 40px 35px;
+  text-align: center;
+  border: 2px solid #ffc0cb;
+}
+
+.signup-container h2 {
+  color: #d63384;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px;
+  color: #c2185b;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #f8bbd0;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  background: #fff;
+  transition: border 0.3s ease-in-out;
+  font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #ec407a;
+  outline: none;
+}
+
+button[type="submit"] {
+  background-color: #f06292;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #e91e63;
+}
+
+.login-link {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #d63384;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+</style>
 
 <body>
 
