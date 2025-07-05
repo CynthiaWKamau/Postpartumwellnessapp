@@ -9,6 +9,8 @@ from .models import Subscription
 from .serializers import SubscriptionSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.conf import settings
+from django.core.mail import send_mail
+from django.shortcuts import render
 
 class SubscriptionViewSet(viewsets.ModelViewSet):
     queryset = Subscription.objects.all()
@@ -20,6 +22,8 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+    def subscribe_view(request):
+     return render(request, 'subscribe.php') 
 
 
 @csrf_exempt

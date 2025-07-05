@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@drr!_g30gna+p%*e9dswh*8=77w&!7b5h-g3mxik*-abp&!(v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '75d2-197-237-61-190.ngrok-free.app']
 
 
 # Application definition
@@ -143,7 +143,7 @@ DARAJA_CONSUMER_KEY = '15sTBlHmq8RR5Tgb47YXHc4CaJ9NsMKiCKBMkNgc4OiyOR1G'
 DARAJA_CONSUMER_SECRET = 'p0B6ahZVgwVpizREZU5F4ayo8jx5Y4BkLcCG1ZQuIyyyAsmgqGdImj1UJl1v2l8I'
 DARAJA_PASSKEY = 'YOUR_PASSKEY'
 DARAJA_SHORTCODE = '174379'  
-DARAJA_CALLBACK_URL = 'https://yourdomain.com/api/payment/callback/'  
+DARAJA_CALLBACK_URL = 'https://75d2-197-237-61-190.ngrok-free.app/api/payment/callback/'  
 
 # enabling email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
