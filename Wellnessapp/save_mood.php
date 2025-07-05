@@ -21,7 +21,7 @@ if (!$stmt) {
 $stmt->bind_param("issss", $user_id, $mood, $factors_string, $notes, $date_logged);
 
 if ($stmt->execute()) {
-    header("Location: journal.php?from_mood=1");
+    header("Location: mood_tracker.php?from_mood=1");
     exit();
 } else {
     echo "Error saving mood: " . $stmt->error;
