@@ -171,7 +171,7 @@
       <form class="subscription-form" data-plan="basic">
         <input type="hidden" name="plan" value="basic">
         <input type="text" name="name" placeholder="Your Name" required>
-        <input type="tel" name="phone" placeholder="2547XXXXXXXX" required>
+        <input type="tel" name="phone" placeholder="254XXXXXXXXX" required>
         <button type="submit">Choose Basic</button>
       </form>
     </div>
@@ -188,7 +188,7 @@
       <form class="subscription-form" data-plan="basic">
         <input type="hidden" name="plan" value="premium">
         <input type="text" name="name" placeholder="Your Name" required>
-        <input type="tel" name="phone" placeholder="2547XXXXXXXX" required>
+        <input type="tel" name="phone" placeholder="254XXXXXXXXX" required>
         <button type="submit">Choose Premium</button>
       </form>
     </div>
@@ -207,7 +207,7 @@
      <form class="subscription-form" data-plan="basic">
         <input type="hidden" name="plan" value="pro">
         <input type="text" name="name" placeholder="Your Name" required>
-        <input type="tel" name="phone" placeholder="2547XXXXXXXX" required>
+        <input type="tel" name="phone" placeholder="254XXXXXXXXX" required>
         <button type="submit">Choose Pro</button>
       </form>
     </div>

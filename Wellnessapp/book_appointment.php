@@ -196,7 +196,7 @@
     </div>
 
     <div class="footer-note">
-      Need help? Reach us anytime via support@lunacare.com
+      Need help? Reach us anytime via Lunacaremailer@gmail.com
     </div>
   </div>
 
