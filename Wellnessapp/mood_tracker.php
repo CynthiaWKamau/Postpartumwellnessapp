@@ -39,7 +39,10 @@
     </section>
 
 
-
+  <form action="save_mood.php" method="POST">
+            <!-- Hidden input to store selected mood -->
+            <input type="hidden" name="mood" id="moodInput">
+            
     <div class="mood-section-wrapper">
 <!-- Mood Selection -->
 <section class="mood-box">
@@ -58,7 +61,7 @@
         <section class="influencing-factors">
             <h2>What might have influenced your mood?</h2>
             <div class="tags">
-             <label><input type="checkbox" name="factors[]" value="Sleep deprivation"> Sleep deprivation</label>
+            <label><input type="checkbox" name="factors[]" value="Sleep deprivation"> Sleep deprivation</label>
            <label><input type="checkbox" name="factors[]" value="Feeding Challenges"> Feeding Challenges</label>
            <label><input type="checkbox" name="factors[]" value="Hormonal Changes"> Hormonal Changes</label>
            <label><input type="checkbox" name="factors[]" value="Social Support"> Social Support</label>
@@ -72,12 +75,7 @@
            <label><input type="checkbox" name="factors[]" value="Financial Concerns"> Financial Concerns</label>
         </div>
     </section>
-            </div>
-        </section>
-
-        <form action="save_mood.php" method="POST">
-            <!-- Hidden input to store selected mood -->
-            <input type="hidden" name="mood" id="moodInput">
+        
 
             <!-- Additional Notes -->
             <section class="notes-section">

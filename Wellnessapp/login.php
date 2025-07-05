@@ -8,12 +8,12 @@ $login_error = '';
 // Process the form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitize input
-    $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_SPECIAL_CHARS);
+    $user_id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
     $password = $_POST["password"]; 
 
     // Validate required fields
-    if (empty($id)) {
+    if (empty($user_id)) {
         $login_error = "Please enter an ID.";
     } elseif (empty($email)) {
         $login_error = "Please enter a valid email.";
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt === false) {
             $login_error = "Database error: " . htmlspecialchars($conn->error);
         } else {
-            $stmt->bind_param("is", $id, $email);
+            $stmt->bind_param("is", $user_id, $email);
             $stmt->execute();
             $result = $stmt->get_result();
 
