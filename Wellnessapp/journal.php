@@ -4,6 +4,9 @@ if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit();
 }
+include 'db_connection.php'; 
+
+$user_id = $_SESSION['id'];
 ?>
 
 <!DOCTYPE html>
@@ -101,6 +104,16 @@ body {
   margin-bottom: 30px;
 }
 
+.previous-entry {
+  background: #fff0fa;
+  border-left: 5px solid #d484c4;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(244, 182, 218, 0.2);
+}
+
+
 textarea {
   width: 100%;
   min-height: 200px;
@@ -155,11 +168,10 @@ textarea:focus {
 <a href="logout.php">🚪 Logout</a>
 
   </nav>
-
   <section class="journal-section">
     <h1>📝 Reflect & Release</h1>
     <p>Write freely about your thoughts, emotions, and experiences. This is your safe space to heal and grow.</p>
-    
+
       <?php if (isset($_GET['success'])): ?>
   <p style="text-align:center; color:green;">Your journal entry has been saved 💖</p>
 <?php elseif (isset($_GET['error']) && $_GET['error'] === 'empty'): ?>
@@ -174,6 +186,30 @@ textarea:focus {
 
     </form>
   </section>
+
+   <!-- Start of Previous Journal Entries Section -->
+  <?php
+  // Fetch previous entries
+  $entries_query = $conn->prepare("SELECT entry, date_logged FROM journal_entries WHERE user_id = ? ORDER BY date_logged DESC");
+  $entries_query->bind_param("i", $user_id);
+  $entries_query->execute();
+  $entries_result = $entries_query->get_result();
+  ?>
+  <section class="journal-section">
+    <h2 style="margin-top: 40px;">📚 Previous Journal Entries</h2>
+
+    <?php if ($entries_result->num_rows > 0): ?>
+      <?php while ($row = $entries_result->fetch_assoc()): ?>
+        <div style="text-align: left; margin-top: 20px; padding: 20px; background-color: #fff0fa; border-left: 5px solid #d484c4; border-radius: 12px;">
+          <p><strong>Date:</strong> <?= date("F j, Y - g:i a", strtotime($row['date_logged'])) ?></p>
+          <p><?= nl2br(htmlspecialchars($row['entry'])) ?></p>
+        </div>
+      <?php endwhile; ?>
+    <?php else: ?>
+      <p style="color: gray;">You haven’t written any journal entries yet.</p>
+    <?php endif; ?>
+  </section>
+  <!-- 🌸 End of Previous Journal Entries Section -->
 
 </body>
 </html>

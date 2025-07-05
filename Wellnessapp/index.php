@@ -46,7 +46,7 @@
     <section class="invite">
         <h2>Ready to feel held?</h2>
         <p>Luna Care was made for you — because postpartum is not just about the baby, it's about the mother too.</p>
-        <a href="signup.html" class="join-btn">Join Luna Care</a>
+        <a href="select_role.php" class="join-btn">Join Luna Care</a>
     </section>
 
     <!-- FOOTER -->
