@@ -18,7 +18,7 @@
     <!-- VISUAL SECTION -->
     <section class="image-focus">
         <div class="circle-glow"></div>
-        <img src="Wellnessapp/Images/download (28).jpeg" alt="Artistic mom and baby" />
+        <img src="Wellnessapp/Images/artistic mom.jpeg" alt="Artistic mom and baby" />
         <div class="overlay-text">
             <h2>You are not alone.</h2>
             <p>We see you. We support you. Luna Care is your pocket-sized companion for postpartum peace and balance.
@@ -56,4 +56,3 @@
 </body>
 
 </html>
-
