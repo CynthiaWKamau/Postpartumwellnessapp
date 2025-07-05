@@ -8,7 +8,7 @@
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to bottom right, #ffe0ec, #fff0f7);
       margin: 0;
-      padding: 2rem;
+ 
     }
 /* Navbar */
 .navbar {
