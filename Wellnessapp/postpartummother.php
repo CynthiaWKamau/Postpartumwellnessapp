@@ -19,6 +19,39 @@ require_role('postpartum mother');
       color: #4a3b47;
     }
 
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 1rem;
+  background: linear-gradient(to right, #f99fc9, #d8b0f9);
+  border-bottom: 3px solid #fff0f8;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.25);
+}
+
+.nav-item {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: #f772a7;
+}
+ .navbar {
+      background-color: #f9c5d1;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border-bottom: 2px solid #fcdce5;
+    }
     .navbar {
       background-color: #f9c5d1;
       padding: 1rem 2rem;
@@ -134,9 +167,11 @@ require_role('postpartum mother');
 
   <!-- Navigation -->
   <nav class="navbar">
+
+    <a href="postpartummother.php">💗 Main Page</a>
     <a href="mood_tracker.php">💗 Mood Tracker</a>
     <a href="journal.php">📖 Journal</a>
-    <a href="subscription.php">💳 Subscription</a>
+    <a href="subscribe.php">💳 Subscription</a>
     <a href="book_appointment.php">📅 Book Appointment</a>
   </nav>
 

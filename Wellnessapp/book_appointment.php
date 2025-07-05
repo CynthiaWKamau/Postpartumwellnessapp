@@ -11,7 +11,56 @@
       background: linear-gradient(to bottom right, #ffeef5, #fff5fa);
       color: #4a3b47;
     }
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 1rem;
+  background: linear-gradient(to right, #f99fc9, #d8b0f9);
+  border-bottom: 3px solid #fff0f8;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.25);
+}
 
+.nav-item {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: #f772a7;
+}
+ .navbar {
+      background-color: #f9c5d1;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border-bottom: 2px solid #fcdce5;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #4a3b47;
+      font-weight: 600;
+      background-color: #fff0f6;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 2px 6px rgba(255, 192, 203, 0.3);
+    }
+
+    .navbar a:hover {
+      background-color: #ffb6c1;
+      color: white;
+    }
     .container {
       max-width: 800px;
       margin: 0 auto;
@@ -85,6 +134,14 @@
   </style>
 </head>
 <body>
+ <!-- Navigation -->
+  <nav class="navbar">
+    <a href="postpartummother.php">💗 Main Page</a>
+    <a href="mood_tracker.php">💗 Mood Tracker</a>
+    <a href="journal.php">📖 Journal</a>
+    <a href="subscribe.php">💳 Subscription</a>
+    <a href="book_appointment.php">📅 Book Appointment</a>
+  </nav>
 
   <div class="container">
     <h1>💬 Book a Therapy Appointment</h1>

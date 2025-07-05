@@ -9,6 +9,14 @@
 </head>
 
 <body>
+    <!-- Navigation -->
+  <nav class="navbar">
+    <a href="postpartummother.php">💗 Main Page</a>
+    <a href="mood_tracker.php">💗 Mood Tracker</a>
+    <a href="journal.php">📖 Journal</a>
+    <a href="subscribe.php">💳 Subscription</a>
+    <a href="book_appointment.php">📅 Book Appointment</a>
+  </nav>
 
 
     <!-- MAIN SECTION -->
@@ -31,7 +39,10 @@
     </section>
 
 
-
+  <form action="save_mood.php" method="POST">
+            <!-- Hidden input to store selected mood -->
+            <input type="hidden" name="mood" id="moodInput">
+            
     <div class="mood-section-wrapper">
 <!-- Mood Selection -->
 <section class="mood-box">
@@ -50,24 +61,21 @@
         <section class="influencing-factors">
             <h2>What might have influenced your mood?</h2>
             <div class="tags">
-               <label><input type="checkbox" name="factors[]" value="Sleep deprivation"> Sleep deprivation</label>
-    <label><input type="checkbox" name="factors[]" value="Feeding Challenges"> Feeding Challenges</label>
-    <label><input type="checkbox" name="factors[]" value="Hormonal Changes"> Hormonal Changes</label>
-    <label><input type="checkbox" name="factors[]" value="Social Support"> Social Support</label>
-    <label><input type="checkbox" name="factors[]" value="Baby Crying"> Baby Crying</label>
-    <label><input type="checkbox" name="factors[]" value="Physical Discomfort"> Physical Discomfort</label>
-    <label><input type="checkbox" name="factors[]" value="Partner Relationship"> Partner Relationship</label>
-    <label><input type="checkbox" name="factors[]" value="Self-care Time"> Self-care Time</label>
-    <label><input type="checkbox" name="factors[]" value="Family Stress"> Family Stress</label>
-    <label><input type="checkbox" name="factors[]" value="Body Changes"> Body Changes</label>
-    <label><input type="checkbox" name="factors[]" value="Milestone Worries"> Milestone Worries</label>
-    <label><input type="checkbox" name="factors[]" value="Financial Concerns"> Financial Concerns</label>
-            </div>
-        </section>
-
-        <form action="save_mood.php" method="POST">
-            <!-- Hidden input to store selected mood -->
-            <input type="hidden" name="mood" id="moodInput">
+            <label><input type="checkbox" name="factors[]" value="Sleep deprivation"> Sleep deprivation</label>
+           <label><input type="checkbox" name="factors[]" value="Feeding Challenges"> Feeding Challenges</label>
+           <label><input type="checkbox" name="factors[]" value="Hormonal Changes"> Hormonal Changes</label>
+           <label><input type="checkbox" name="factors[]" value="Social Support"> Social Support</label>
+           <label><input type="checkbox" name="factors[]" value="Baby Crying"> Baby Crying</label>
+           <label><input type="checkbox" name="factors[]" value="Physical Discomfort"> Physical Discomfort</label>
+           <label><input type="checkbox" name="factors[]" value="Partner Relationship"> Partner Relationship</label>
+           <label><input type="checkbox" name="factors[]" value="Self-care Time"> Self-care Time</label>
+           <label><input type="checkbox" name="factors[]" value="Family Stress"> Family Stress</label>
+           <label><input type="checkbox" name="factors[]" value="Body Changes"> Body Changes</label>
+           <label><input type="checkbox" name="factors[]" value="Milestone Worries"> Milestone Worries</label>
+           <label><input type="checkbox" name="factors[]" value="Financial Concerns"> Financial Concerns</label>
+        </div>
+    </section>
+        
 
             <!-- Additional Notes -->
             <section class="notes-section">
