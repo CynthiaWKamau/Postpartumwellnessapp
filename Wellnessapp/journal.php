@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,22 +146,32 @@ textarea:focus {
 
    <!-- Navigation -->
   <nav class="navbar">
-     <a href="postpartummother.php">💗 Main Page</a>
-    <a href="mood_tracker.php">💗 Mood Tracker</a>
-    <a href="journal.php">📖 Journal</a>
-    <a href="subscribe.php">💳 Subscription</a>
-    <a href="book_appointment.php">📅 Book Appointment</a>
+   <a href="postpartummother.php">🏠 Main Page</a>
+<a href="mood_tracker.php">🧠 Mood Tracker</a>
+<a href="journal.php">📔 Journal</a>
+<a href="subscribe.php">💳 Subscription</a>
+<a href="book_appointment.php">📅 Book Appointment</a>
+<a href="login.php">🔐 Login</a>
+<a href="logout.php">🚪 Logout</a>
+
   </nav>
 
   <section class="journal-section">
     <h1>📝 Reflect & Release</h1>
     <p>Write freely about your thoughts, emotions, and experiences. This is your safe space to heal and grow.</p>
+    
+      <?php if (isset($_GET['success'])): ?>
+  <p style="text-align:center; color:green;">Your journal entry has been saved 💖</p>
+<?php elseif (isset($_GET['error']) && $_GET['error'] === 'empty'): ?>
+  <p style="text-align:center; color:red;">Journal entry cannot be empty.</p>
+<?php endif; ?>
 
     <form action="save_journal.php" method="POST">
       <textarea name="entry" placeholder="Start writing your thoughts here..."></textarea>
       <div class="btn-area">
         <button type="submit">Save Journal Entry</button>
       </div>
+
     </form>
   </section>
 

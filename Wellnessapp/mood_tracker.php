@@ -11,11 +11,14 @@
 <body>
     <!-- Navigation -->
   <nav class="navbar">
-    <a href="postpartummother.php">💗 Main Page</a>
-    <a href="mood_tracker.php">💗 Mood Tracker</a>
-    <a href="journal.php">📖 Journal</a>
-    <a href="subscribe.php">💳 Subscription</a>
-    <a href="book_appointment.php">📅 Book Appointment</a>
+    <a href="postpartummother.php">🏠 Main Page</a>
+<a href="mood_tracker.php">🧠 Mood Tracker</a>
+<a href="journal.php">📔 Journal</a>
+<a href="subscribe.php">💳 Subscription</a>
+<a href="book_appointment.php">📅 Book Appointment</a>
+<a href="login.php">🔐 Login</a>
+<a href="logout.php">🚪 Logout</a>
+
   </nav>
 
 
@@ -42,7 +45,7 @@
   <form action="save_mood.php" method="POST">
             <!-- Hidden input to store selected mood -->
             <input type="hidden" name="mood" id="moodInput">
-            
+
     <div class="mood-section-wrapper">
 <!-- Mood Selection -->
 <section class="mood-box">
