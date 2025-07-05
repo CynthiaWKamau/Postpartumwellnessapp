@@ -15,6 +15,8 @@
         <a href="mood.php" class="nav-item">💗 Mood Tracker</a>
         <a href="journal.php" class="nav-item">📖 Journal Entries</a>
         <a href="wallet.php" class="nav-item">👛 Personal Wallet</a>
+
+
     </nav>
 
     <!-- MAIN SECTION -->
@@ -27,31 +29,16 @@
             transformative time.
         </p>
     </section>
-    <!-- MOOD SELECTION SECTION -->
+    <!-- Mood Navigation -->
     <section class="mood-selector">
         <div class="mood-nav">
-            <button class="active">💗 Today's Mood</button>
-            <button>📅 Mood History</button>
-            <button>📈 Insights</button>
-        </div>
-
-        <h2 class="mood-heading">How are you feeling today?</h2>
-        <p class="mood-date">Monday, June 30, 2025</p>
-
-        <div class="mood-box">
-            <h3>Select Your Mood</h3>
-            <div class="mood-options">
-                <div class="mood-card">😊<span>Joyful</span></div>
-                <div class="mood-card">😌<span>Content</span></div>
-                <div class="mood-card">😐<span>Neutral</span></div>
-                <div class="mood-card">😰<span>Anxious</span></div>
-                <div class="mood-card">😢<span>Sad</span></div>
-                <div class="mood-card">😵‍💫<span>Overwhelmed</span></div>
-                <div class="mood-card">🥰<span>Grateful</span></div>
-                <div class="mood-card">😴<span>Tired</span></div>
-            </div>
+            <button onclick="showSection('today')">💗 Today's Mood</button>
+            <button onclick="showSection('history')">📅 Mood History</button>
+            <button onclick="showSection('insight')">📈 Insights</button>
         </div>
     </section>
+
+
 
     <div class="mood-section-wrapper">
 
@@ -74,24 +61,32 @@
             </div>
         </section>
 
-        <!-- Additional Notes -->
-        <section class="notes-section">
-            <h2>Additional Notes (Optional)</h2>
-            <textarea
-                placeholder="How are you feeling? What's on your mind today? Remember, every feeling is valid..."></textarea>
-        </section>
+        <form action="save_mood.php" method="POST">
+            <!-- Hidden input to store selected mood -->
+            <input type="hidden" name="mood" id="moodInput">
 
-        <!-- Save Button -->
-        <div class="save-button">
-            <button>Save Today's Mood 💕</button>
-        </div>
+            <!-- Additional Notes -->
+            <section class="notes-section">
+                <h2>Additional Notes (Optional)</h2>
+                <textarea name="note"
+                    placeholder="How are you feeling? What's on your mind today? Remember, every feeling is valid..."></textarea>
+            </section>
 
-    </div>
-    <form action="save_mood.php" method="POST">
-        <input type="hidden" name="mood" id="moodInput">
-        <textarea name="note" placeholder="Write a note..."></textarea>
-        <button type="submit">Save Mood Entry</button>
-    </form>
+            <!-- Save Button -->
+            <div class="save-button">
+                <button type="submit">Save Today's Mood 💕</button>
+            </div>
+        </form>
+
+        <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll('.mood-section');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+        </script>
+
+
 
 </body>
 
