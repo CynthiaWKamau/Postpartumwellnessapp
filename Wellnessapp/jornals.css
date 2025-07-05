@@ -1,0 +1,107 @@
+/* General Styling */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #fcdff3, #e0c6f5);
+  margin: 0;
+  padding: 0;
+  color: #5d2673;
+}
+
+/* Header */
+.journal-header {
+  text-align: center;
+  padding: 60px 20px 30px;
+  background: linear-gradient(to right, #f87ac0, #b87cf7);
+  color: white;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.journal-header h1 {
+  font-size: 48px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.journal-header p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* Form Section */
+.journal-form {
+  max-width: 700px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(178, 66, 194, 0.2);
+}
+
+.journal-form label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.journal-form input,
+.journal-form textarea {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #d4aaf2;
+  margin-top: 8px;
+  font-size: 15px;
+  background: #fff8ff;
+}
+
+.journal-form button {
+  margin-top: 30px;
+  background: linear-gradient(to right, #d06ce4, #9f51d3);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(198, 63, 169, 0.3);
+}
+
+.journal-form button:hover {
+  transform: scale(1.03);
+}
+
+/* Journal History */
+.journal-history {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.journal-history h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #7d3c98;
+  margin-bottom: 20px;
+}
+
+.entry {
+  background: #fff;
+  padding: 20px;
+  border-left: 6px solid #d06ce4;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(100, 0, 150, 0.1);
+}
+
+.entry h3 {
+  color: #6a1b9a;
+  margin-bottom: 10px;
+}
+
+.entry p {
+  color: #444;
+  line-height: 1.6;
+}
