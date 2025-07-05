@@ -2,7 +2,6 @@
 session_start();
 include 'auth.php';
 require_role('postpartum mother');
-include 'sidebar.php';
 ?>
 
 <!DOCTYPE html>
