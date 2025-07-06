@@ -1,6 +1,8 @@
 <?php
 session_start();
+require_once 'vendor/autoload.php';
 include 'db_connection.php';
+
 
 $role = $_SESSION['role'];
 

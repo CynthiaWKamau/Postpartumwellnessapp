@@ -1,0 +1,227 @@
+<?php
+session_start();
+include 'auth.php';
+require_role('admin');
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <style>
+   body {
+        margin: 0;
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        background: linear-gradient(to bottom right, #fff0f6, #fdf7fa);
+        color: #4a3b47;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        padding: 1rem;
+        background: linear-gradient(to right, #f99fc9, #d8b0f9);
+        border-bottom: 3px solid #fff0f8;
+        border-radius: 0 0 16px 16px;
+        box-shadow: 0 5px 15px rgba(255, 182, 193, 0.25);
+    }
+
+    .nav-item {
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: background 0.3s ease;
+    }
+
+    .nav-item:hover {
+        background-color: #f772a7;
+    }
+
+    .navbar {
+        background-color: #f9c5d1;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        border-bottom: 2px solid #fcdce5;
+    }
+
+    .navbar {
+        background-color: #f9c5d1;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        border-bottom: 2px solid #fcdce5;
+    }
+
+    .navbar a {
+        text-decoration: none;
+        color: #4a3b47;
+        font-weight: 600;
+        background-color: #fff0f6;
+        padding: 10px 20px;
+        border-radius: 30px;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 2px 6px rgba(255, 192, 203, 0.3);
+    }
+
+    .navbar a:hover {
+        background-color: #ffb6c1;
+        color: white;
+    }
+
+    .hero {
+        text-align: center;
+        padding: 4rem 1rem 2rem;
+    }
+
+    .hero h1 {
+        font-size: 2.8rem;
+        color: #d63384;
+        margin-bottom: 1rem;
+    }
+
+    .hero p {
+        font-size: 1.15rem;
+        max-width: 650px;
+        margin: auto;
+        color: #6e5d67;
+    }
+
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 2rem 3%;
+    }
+
+    .features a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .feature-card {
+        background: rgba(255, 240, 246, 0.8);
+        border: 1px solid #ffe0ec;
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(255, 182, 193, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        backdrop-filter: blur(6px);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 12px 32px rgba(255, 160, 180, 0.4);
+    }
+
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+        color: #b03060;
+        font-size: 1.3rem;
+    }
+
+    .feature-card p {
+        font-size: 0.98rem;
+        color: #5f4b50;
+        margin-top: 0.5rem;
+    }
+
+    .cta-button {
+        text-align: center;
+        margin: 2.5rem 0;
+    }
+
+    .cta-button a {
+        background: linear-gradient(to right, #ff85a2, #ffb6c1);
+        color: white;
+        padding: 0.85rem 2.2rem;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: background 0.3s ease;
+        box-shadow: 0 6px 16px rgba(255, 160, 180, 0.3);
+    }
+
+    .cta-button a:hover {
+        background: linear-gradient(to right, #f06292, #f48fb1);
+    }
+    </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="admin.php">🏠 Dashboard</a>
+    <a href="manage_users.php">👥 Manage Users</a>
+    <a href="manage_therapists.php">🩺 Therapists</a>
+    <a href="manage_appointments.php">📅 Appointments</a>
+    <a href="manage_payments.php">💳 Payments</a>
+    <a href="view_reports.php">📊 Reports</a>
+    
+    <a href="logout.php">🚪 Logout</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome, <?= htmlspecialchars($_SESSION['fullname']) ?> 👩‍💼</h1>
+    <p>You have full control to manage records, monitor activity, and support platform operations.</p>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <a href="manage_users.php">
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Manage Users</h3>
+        <p>View, edit, or remove users including mothers and therapists.</p>
+      </div>
+    </a>
+
+    <a href="manage_appointments.php">
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>Appointments</h3>
+        <p>Monitor and oversee all appointment bookings and statuses.</p>
+      </div>
+    </a>
+
+    <a href="manage_payments.php">
+      <div class="feature-card">
+        <div class="feature-icon">💳</div>
+        <h3>Payment Records</h3>
+        <p>Track subscriptions, transactions, and manage billing issues.</p>
+      </div>
+    </a>
+
+    <a href="view_reports.php">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Platform Reports</h3>
+        <p>Generate, download, and review usage and wellness reports.</p>
+      </div>
+    </a>
+  </section>
+
+  <!-- CTA Button -->
+  <div class="cta-button">
+    <a href="manage_users.php">Start Managing Records ⚙️</a>
+  </div>
+
+</body>
+</html>
