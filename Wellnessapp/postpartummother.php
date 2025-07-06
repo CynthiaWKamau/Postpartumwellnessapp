@@ -170,13 +170,13 @@ require_role('postpartum mother');
     <!-- Navigation -->
     <nav class="navbar">
 
-        <a href="http://localhost/Postpartumwellnessapp/Wellnessapp/postpartummother.php">🏠 Dashboard</a>
-        <a href="http://localhost/Postpartumwellnessapp/Wellnessapp/mood_tracker.php">🧠 Mood Tracker</a>
-        <a href="http://localhost/Postpartumwellnessapp/Wellnessapp/journal.php">📔 Journal</a>
-        <a href="http://127.0.0.1:8000/api/subscribe/">💳 Subscription</a>
-        <a href="http://localhost/Postpartumwellnessapp/Wellnessapp/book_appointment.php">📅 Book Appointment</a>
-        <a href="http://localhost/Postpartumwellnessapp/Wellnessapp/login.php">🔐 Login</a>
-        <a href="http://localhost/Postpartumwellnessapp/Wellnessapp/login.php">🚪 Logout</a>
+        <a href="postpartummother.php">🏠 Dashboard</a>
+        <a href="mood_tracker.php">🧠 Mood Tracker</a>
+        <a href="journal.php">📔 Journal</a>
+       <a href="http://127.0.0.1:8000/api/subscribe/" target="_blank">💳 Subscription</a>
+       <a href="book_appointment.php">📅 Book Appointment</a>
+        <a href="login.php">🔐 Login</a>
+        <a href="logout.php">🚪 Logout</a>
 
     </nav>
 
@@ -204,7 +204,7 @@ require_role('postpartum mother');
             </div>
         </a>
 
-        <a href="subscribe.html">
+        <a href="http://127.0.0.1:8000/api/subscribe/" target="_blank">💳 Subscription</a>
             <div class="feature-card">
                 <div class="feature-icon">💳</div>
                 <h3>Manage Subscription</h3>
