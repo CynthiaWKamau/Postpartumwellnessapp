@@ -169,11 +169,8 @@ require_role('admin');
   <nav class="navbar">
     <a href="admin.php">🏠 Dashboard</a>
     <a href="manage_users.php">👥 Manage Users</a>
-    <a href="manage_therapists.php">🩺 Therapists</a>
     <a href="manage_appointments.php">📅 Appointments</a>
-    <a href="manage_payments.php">💳 Payments</a>
-    <a href="view_reports.php">📊 Reports</a>
-    
+    <a href="login.php">🔐 Login</a>
     <a href="logout.php">🚪 Logout</a>
   </nav>
 
@@ -209,13 +206,6 @@ require_role('admin');
       </div>
     </a>
 
-    <a href="view_reports.php">
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Platform Reports</h3>
-        <p>Generate, download, and review usage and wellness reports.</p>
-      </div>
-    </a>
   </section>
 
   <!-- CTA Button -->

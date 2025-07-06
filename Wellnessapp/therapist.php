@@ -150,7 +150,6 @@ require_role('therapist');
     <a href="therapist.php">🏠 Dashboard</a>
     <a href="view_patients.php">👩‍🍼 View Patients</a>
     <a href="view_appointments.php">📅 Appointments</a>
-    <a href="therapist_report.php">📊 Reports</a>
     <a href="payments.php">💰 Payments</a>
     <a href="login.php">🔐 Login</a>
     <a href="logout.php">🚪 Logout</a>
@@ -174,12 +173,6 @@ require_role('therapist');
       <div class="feature-icon">📅</div>
       <h3>Appointments</h3>
       <p>View and manage upcoming sessions.</p>
-    </a>
-
-    <a href="therapist_report.php" class="feature-card">
-      <div class="feature-icon">📊</div>
-      <h3>Generate Reports</h3>
-      <p>Analyze emotional patterns and generate progress reports.</p>
     </a>
 
     <a href="payments.php" class="feature-card">

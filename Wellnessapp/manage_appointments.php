@@ -1,21 +1,27 @@
 <?php
 session_start();
 include 'auth.php';
-require_role('admin'); // Make sure only admins access this page
+require_role('admin');
 include 'db_connection.php';
 
-// Fetch all users
-$sql = "SELECT id, fullname, email, role FROM users ORDER BY role, fullname";
+// Fetch all appointments with patient info
+$sql = "SELECT entry_id, appointment_date, appointment_time, fullname, email, status
+        FROM book_appointment 
+        ORDER BY appointment_date DESC, appointment_time DESC";
+
 $result = $conn->query($sql);
+if (!$result) {
+    die("Query failed: " . $conn->error);
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin - Manage Users</title>
+    <title>Admin - Manage Appointments</title>
     <style>
-        body {
+       body {
         margin: 0;
         font-family: 'Poppins', 'Segoe UI', sans-serif;
         background: linear-gradient(to bottom right, #fff0f6, #fdf7fa);
@@ -88,7 +94,7 @@ $result = $conn->query($sql);
             margin-top: 2rem;
         }
 
-        .user-table {
+        .apt-table {
             margin: 2rem auto;
             width: 90%;
             background: #fff;
@@ -114,6 +120,13 @@ $result = $conn->query($sql);
             color: #b03060;
         }
 
+        .note {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            margin-top: 1rem;
+        }
+
         .actions a {
             text-decoration: none;
             padding: 6px 12px;
@@ -121,37 +134,45 @@ $result = $conn->query($sql);
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
+            display: inline-block;
         }
 
-        .edit-btn {
-            background-color: #cda4f4;
-            color: white;
-        }
-
-        .delete-btn {
+        .cancel-btn {
             background-color: #f26d8c;
             color: white;
         }
 
-        .edit-btn:hover {
-            background-color: #ab73e6;
-        }
-
-        .delete-btn:hover {
+        .cancel-btn:hover {
             background-color: #d94a6a;
         }
+        .approve-btn {
+    background-color: #28a745;
+    color: white;
+}
+.approve-btn:hover {
+    background-color: #218838;
+}
 
-        .note {
-            text-align: center;
-            font-style: italic;
-            color: #777;
-            margin-top: 1rem;
-        }
+.complete-btn {
+    background-color: #007bff;
+    color: white;
+}
+.complete-btn:hover {
+    background-color: #0069d9;
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+}
+.cancel-btn:hover {
+    background-color: #c82333;
+}
+
     </style>
 </head>
 <body>
-
-  <!-- Navigation -->
+   <!-- Navigation -->
   <nav class="navbar">
     <a href="admin.php">🏠 Dashboard</a>
     <a href="manage_users.php">👥 Manage Users</a>
@@ -161,32 +182,50 @@ $result = $conn->query($sql);
     <a href="logout.php">🚪 Logout</a>
   </nav>
 
-    <h1>👥 User Management</h1>
+    <h1>📅 Appointment Management</h1>
 
-    <div class="user-table">
-        <?php if ($result->num_rows > 0): ?>
-        <table>
-            <tr>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
-            </tr>
-            <?php while($row = $result->fetch_assoc()): ?>
-            <tr>
-                <td><?= htmlspecialchars($row['fullname']) ?></td>
-                <td><?= htmlspecialchars($row['email']) ?></td>
-                <td><?= htmlspecialchars($row['role']) ?></td>
-                <td class="actions">
-                    <a class="edit-btn" href="edit_user.php?id=<?= $row['id'] ?>">✏️ Edit</a>
-                    <a class="delete-btn" href="delete_user.php?id=<?= $row['id'] ?>" onclick="return confirm('Are you sure you want to delete this user?')">🗑️ Delete</a>
-                </td>
-            </tr>
-            <?php endwhile; ?>
-        </table>
-        <?php else: ?>
-            <p class="note">No users found.</p>
+    <div class="apt-table">
+           <?php if ($result->num_rows > 0): ?>
+    <table>
+        <tr>
+            <th>Patient</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+
+        <?php while ($row = $result->fetch_assoc()): ?>
+        <tr>
+            <td><?= htmlspecialchars($row['fullname']) ?></td>
+            <td><?= htmlspecialchars($row['email']) ?></td>
+            <td><?= htmlspecialchars($row['appointment_date']) ?></td>
+            <td><?= htmlspecialchars($row['appointment_time']) ?></td>
+            <td><?= htmlspecialchars($row['status']) ?></td>
+            <td class="actions">
+    <?php if ($row['status'] !== 'Cancelled'): ?>
+        <?php if ($row['status'] === 'Pending'): ?>
+            <a class="approve-btn" href="update_appointment_status.php?id=<?= $row['entry_id'] ?>&status=Approved">✅ Approve</a>
         <?php endif; ?>
+        <?php if ($row['status'] === 'Approved'): ?>
+            <a class="complete-btn" href="update_appointment_status.php?id=<?= $row['entry_id'] ?>&status=Completed">✔ Completed</a>
+        <?php endif; ?>
+        <a class="cancel-btn" href="update_appointment_status.php?id=<?= $row['entry_id'] ?>&status=Cancelled"
+           onclick="return confirm('Cancel this appointment?');">❌ Cancel</a>
+    <?php else: ?>
+        <span style="color: #777;">—</span>
+    <?php endif; ?>
+</td>
+
+
+        
+        <?php endwhile; ?>
+    </table>
+<?php else: ?>
+    <p class="note">No appointments found.</p>
+<?php endif; ?>
+
     </div>
 
 </body>

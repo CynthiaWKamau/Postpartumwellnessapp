@@ -176,7 +176,6 @@ if (!$result) {
     <a href="therapist.php">🏠 Dashboard</a>
     <a href="view_patients.php">👩‍🍼 View Patients</a>
     <a href="view_appointments.php">📅 Appointments</a>
-    <a href="reports.php">📊 Reports</a>
     <a href="payments.php">💰 Payments</a>
     <a href="login.php">🔐 Login</a>
     <a href="logout.php">🚪 Logout</a>

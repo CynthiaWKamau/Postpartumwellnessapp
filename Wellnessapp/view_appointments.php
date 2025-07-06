@@ -126,6 +126,47 @@ if (!$result) {
             color: #999;
             font-style: italic;
         }
+.approve-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+}
+.approve-btn:hover {
+    background-color: #218838;
+}
+
+.complete-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+}
+.complete-btn:hover {
+    background-color: #0069d9;
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+}
+.cancel-btn:hover {
+    background-color: #c82333;
+}
 
          table {
       width: 90%;
@@ -181,7 +222,6 @@ if (!$result) {
     <a href="therapist.php">🏠 Dashboard</a>
     <a href="view_patients.php">👩‍🍼 View Patients</a>
     <a href="view_appointments.php">📅 Appointments</a>
-    <a href="therapist_report.php">📊 Reports</a>
     <a href="payments.php">💰 Payments</a>
     <a href="login.php">🔐 Login</a>
    <a href="logout.php">🚪 Logout</a>
@@ -195,15 +235,42 @@ if (!$result) {
             <th>Email</th>
             <th>Date</th>
             <th>Time Slot</th>
+            <th>Status</th>
+          
         </tr>
-        <?php while ($row = $result->fetch_assoc()): ?>
-        <tr>
-            <td><?= htmlspecialchars($row['patient_name']) ?></td>
-            <td><?= htmlspecialchars($row['patient_email']) ?></td>
-            <td><?= htmlspecialchars($row['appointment_date']) ?></td>
-            <td><?= htmlspecialchars($row['appointment_time']) ?></td>
-        </tr>
-        <?php endwhile; ?>
+       <?php while ($row = $result->fetch_assoc()): ?>
+<tr>
+    <td><?= htmlspecialchars($row['patient_name']) ?></td>
+    <td><?= htmlspecialchars($row['patient_email']) ?></td>
+    <td><?= htmlspecialchars($row['appointment_date']) ?></td>
+    <td><?= htmlspecialchars($row['appointment_time']) ?></td>
+    <td>
+        <?php
+            $status = strtolower($row['status']);
+            $id = $row['entry_id'];
+
+            // Display status badge only
+            echo "<span class='status-badge status-$status'></span>";
+
+            // Display appropriate action buttons based on status
+            if ($status !== 'cancelled') {
+                if ($status === 'pending') {
+                    echo "<a class='approve-btn' href='therapist_update_appointment.php?id=$id&status=Approved'>✅ Approve</a> ";
+                }
+
+                if ($status === 'approved') {
+                    echo "<a class='complete-btn' href='therapist_update_appointment.php?id=$id&status=Completed'>✔ Completed</a> ";
+                }
+
+                echo "<a class='cancel-btn' href='therapist_update_appointment.php?id=$id&status=Cancelled' onclick='return confirm(\"Cancel this appointment?\");'>❌ Cancel</a>";
+            } else {
+                echo "<span style='color: #999;'>—</span>";
+            }
+        ?>
+    </td>
+</tr>
+<?php endwhile; ?>
+
     </table>
     <?php else: ?>
         <p>No appointments found.</p>

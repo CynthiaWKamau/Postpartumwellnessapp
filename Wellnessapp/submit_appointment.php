@@ -21,8 +21,8 @@ $time      = $_POST['time'] ?? '';
 $notes     = $_POST['notes'] ?? '';
 
 // Prepare and bind
-$sql = "INSERT INTO book_appointment (user_id, fullname, email, phone, appointment_date, appointment_time, notes)
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO book_appointment (user_id, fullname, email, phone, appointment_date, appointment_time, notes, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?,'Pending')";
 
 $stmt = $conn->prepare($sql);
 
