@@ -139,10 +139,10 @@
 <a href="postpartummother.php">🏠 Main Page</a>
 <a href="mood_tracker.php">🧠 Mood Tracker</a>
 <a href="journal.php">📔 Journal</a>
-<a href="subscribe.php">💳 Subscription</a>
+ <a href="http://127.0.0.1:8000/api/subscribe/" target="_blank">💳 Subscription</a>
 <a href="book_appointment.php">📅 Book Appointment</a>
 <a href="login.php">🔐 Login</a>
-<a href="logout.php">🚪 Logout</a>
+<a href="index.php">🚪 Logout</a>
 
   </nav>
 

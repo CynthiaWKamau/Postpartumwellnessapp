@@ -42,10 +42,10 @@ $result = $stmt->get_result();
 <a href="postpartummother.php">🏠 Main Page</a>
 <a href="mood_tracker.php">🧠 Mood Tracker</a>
 <a href="journal.php">📔 Journal</a>
-<a href="subscribe.php">💳 Subscription</a>
+ <a href="http://127.0.0.1:8000/api/subscribe/" target="_blank">💳 Subscription</a>
 <a href="book_appointment.php">📅 Book Appointment</a>
 <a href="login.php">🔐 Login</a>
-<a href="logout.php">🚪 Logout</a>
+<a href="index.php">🚪 Logout</a>
 
   </nav>
 
@@ -123,31 +123,6 @@ $result = $stmt->get_result();
      </div>
     </div>
    </form>
-</div>
-
-<!-- 📅 Mood History Section -->
-<div id="history" class="mood-content-section" style="display: none;">
-  <section class="mood-section">
-    <h2>📅 Mood History</h2>
-    <?php if ($result->num_rows > 0): ?>
-      <?php $i = 0; ?>
-      <?php while ($row = $result->fetch_assoc()): ?>
-        <?php $i++; ?>
-        <div class="mood-history-entry">
-          <button class="history-toggle" onclick="toggleMoodDetail(<?= $i ?>)">
-            📅 <?= date("F j, Y - g:i A", strtotime($row['date_logged'])) ?>
-          </button>
-          <div id="mood-detail-<?= $i ?>" class="mood-detail hidden">
-            <p><strong>Mood:</strong> <?= htmlspecialchars($row['mood']) ?></p>
-            <p><strong>Factors:</strong> <?= htmlspecialchars($row['influencing_factors']) ?></p>
-            <p><strong>Notes:</strong> <?= nl2br(htmlspecialchars($row['notes'])) ?></p>
-          </div>
-        </div>
-      <?php endwhile; ?>
-    <?php else: ?>
-      <p style="color: gray;">You haven’t tracked any moods yet.</p>
-    <?php endif; ?>
-  </section>
 </div>
 
 <!-- 📅 Mood History Section -->

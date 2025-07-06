@@ -171,7 +171,7 @@ require_role('admin');
     <a href="manage_users.php">👥 Manage Users</a>
     <a href="manage_appointments.php">📅 Appointments</a>
     <a href="login.php">🔐 Login</a>
-    <a href="logout.php">🚪 Logout</a>
+    <a href="index.php">🚪 Logout</a>
   </nav>
 
   <!-- Hero Section -->
@@ -195,14 +195,6 @@ require_role('admin');
         <div class="feature-icon">📅</div>
         <h3>Appointments</h3>
         <p>Monitor and oversee all appointment bookings and statuses.</p>
-      </div>
-    </a>
-
-    <a href="manage_payments.php">
-      <div class="feature-card">
-        <div class="feature-icon">💳</div>
-        <h3>Payment Records</h3>
-        <p>Track subscriptions, transactions, and manage billing issues.</p>
       </div>
     </a>
 

@@ -173,11 +173,10 @@ require_role('postpartum mother');
         <a href="postpartummother.php">🏠 Dashboard</a>
         <a href="mood_tracker.php">🧠 Mood Tracker</a>
         <a href="journal.php">📔 Journal</a>
-       <a href="http://127.0.0.1:8000/api/subscribe/" target="_blank">💳 Subscription</a>
-       <a href="book_appointment.php">📅 Book Appointment</a>
+        <a href="http://127.0.0.1:8000/api/subscribe/" target="_blank">💳 Subscription</a>
+        <a href="book_appointment.php">📅 Book Appointment</a>
         <a href="login.php">🔐 Login</a>
-        <a href="logout.php">🚪 Logout</a>
-
+        <a href="index.php">🚪 Logout</a>
     </nav>
 
     <!-- Hero Section -->
@@ -204,19 +203,20 @@ require_role('postpartum mother');
             </div>
         </a>
 
-        <a href="http://127.0.0.1:8000/api/subscribe/" target="_blank">💳 Subscription</a>
-            <div class="feature-card">
-                <div class="feature-icon">💳</div>
-                <h3>Manage Subscription</h3>
-                <p>Choose or update your care plan and explore the support that's right for you.</p>
-            </div>
-        </a>
 
         <a href="book_appointment.php">
             <div class="feature-card">
                 <div class="feature-icon">📅</div>
                 <h3>Book a Therapist</h3>
                 <p>Connect with professionals ready to listen and support your journey.</p>
+            </div>
+        </a>
+
+            <a href="http://127.0.0.1:8000/api/subscribe/" target="_blank"></a>
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3>Manage Subscription</h3>
+                <p>Choose or update your care plan and explore the support that's right for you.</p>
             </div>
         </a>
     </section>

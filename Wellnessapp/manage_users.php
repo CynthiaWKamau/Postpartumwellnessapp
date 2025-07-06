@@ -156,9 +156,8 @@ $result = $conn->query($sql);
     <a href="admin.php">🏠 Dashboard</a>
     <a href="manage_users.php">👥 Manage Users</a>
     <a href="manage_appointments.php">📅 Appointments</a>
-    <a href="manage_payments.php">💳 Payments</a>
     <a href="login.php">🔐 Login</a>
-    <a href="logout.php">🚪 Logout</a>
+    <a href="index.php">🚪 Logout</a>
   </nav>
 
     <h1>👥 User Management</h1>

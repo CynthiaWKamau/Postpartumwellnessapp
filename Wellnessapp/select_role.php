@@ -1,64 +1,90 @@
-<!--select_role.php -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Select Role-Wellness Application</title>
-          <style>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Your Role | Luna Care</title>
+  <style>
     body {
-      background: #ffe6f0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffe6f0, #fff6f9);
     }
-
-    .signup-box {
-      background-color: #fff0f5;
+    .role-container {
+      background: #ffffff;
       border-radius: 20px;
-      padding: 40px 60px;
+      padding: 2rem 3rem;
+      box-shadow: 0 12px 30px rgba(220, 51, 132, 0.15);
       text-align: center;
-      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
-      border: 2px solid #ffc0cb;
+      max-width: 360px;
+      width: 100%;
     }
-
-    .signup-box h2 {
+    .role-container h2 {
+      margin-bottom: 2rem;
       color: #d63384;
-      margin-bottom: 25px;
-      font-size: 24px;
+      font-size: 1.8rem;
     }
-
-    .signup-box a {
-      display: block;
-      margin: 12px auto;
-      width: 80%;
-      padding: 12px;
-      background-color: #f8bbd0;
-      color: #4a004a;
-      text-decoration: none;
+    .roles {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .roles a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.9rem;
       border-radius: 30px;
+      text-decoration: none;
+      font-size: 1rem;
       font-weight: bold;
-      transition: all 0.3s ease-in-out;
+      color: #4a004a;
+      background: #f8bbd0;
+      transition: all 0.3s ease;
     }
-
-    .signup-box a:hover {
-      background-color: #ec407a;
-      color: #fff;
-      transform: scale(1.05);
+    .roles a:hover,
+    .roles a:focus {
+      background: #ec407a;
+      color: white;
+      transform: translateY(-2px);
+      outline: none;
+    }
+    .roles a .icon {
+      font-size: 1.2rem;
+    }
+    @media (max-width: 480px) {
+      .role-container {
+        padding: 1.5rem 2rem;
+      }
+      .role-container h2 {
+        font-size: 1.5rem;
+      }
+      .roles a {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+      }
     }
   </style>
-    </head>
-    <body>
-        <div class="signup-box">
-            <h2>Choose your role</h2>
-       <a href="signup.php?role=postpartum mother">Postpartum Mother</a><br>
-       <a href="signup.php?role=therapist">Therapist</a><br>
-       <a href="signup.php?role=admin">Admin</a><br>
-</div>
+</head>
+<body>
+  <div class="role-container" role="region" aria-labelledby="role-heading">
+    <h2 id="role-heading">Choose Your Role</h2>
+    <div class="roles">
+      <a href="signup.php?role=postpartum+mother">
+        <span class="icon">🤱</span> Postpartum Mother
+      </a>
+      <a href="signup.php?role=therapist">
+        <span class="icon">🧑‍⚕️</span> Therapist
+      </a>
+      <a href="signup.php?role=admin">
+        <span class="icon">🛠️</span> Admin
+      </a>
+    </div>
+  </div>
 </body>
 </html>
-        
