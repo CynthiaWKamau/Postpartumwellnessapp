@@ -13,14 +13,13 @@ require_role('therapist');
   <link rel="stylesheet" href="therapist_dashboard.css" />
 </head>
 <style>
-    body {
-  margin: 0;
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #fff0f6, #fdf7fa);
-  color: #4a3b47;
-}
+  body {
+      margin: 0;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #fff0f6, #fdf7fa);
+      color: #4a3b47;
+    }
 
-/* Navbar */
 .navbar {
   display: flex;
   justify-content: center;
@@ -32,19 +31,54 @@ require_role('therapist');
   box-shadow: 0 5px 15px rgba(255, 182, 193, 0.25);
 }
 
-.navbar a {
+.nav-item {
   text-decoration: none;
   color: white;
   font-weight: 600;
-  font-size: 16px;
-  padding: 10px 18px;
-  border-radius: 25px;
-  transition: background 0.3s;
+  font-size: 17px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background 0.3s ease;
 }
 
-.navbar a:hover {
-  background-color: #f77fbb;
+.nav-item:hover {
+  background-color: #f772a7;
 }
+ .navbar {
+      background-color: #f9c5d1;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border-bottom: 2px solid #fcdce5;
+    }
+    .navbar {
+      background-color: #f9c5d1;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border-bottom: 2px solid #fcdce5;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #4a3b47;
+      font-weight: 600;
+      background-color: #fff0f6;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 2px 6px rgba(255, 192, 203, 0.3);
+    }
+
+    .navbar a:hover {
+      background-color: #ffb6c1;
+      color: white;
+    }
+
 
 /* Hero Section */
 .hero {
@@ -113,11 +147,13 @@ require_role('therapist');
 
   <!-- Navbar -->
   <nav class="navbar">
-    <a href="therapist_dashboard.php">🏠 Dashboard</a>
+    <a href="therapist.php">🏠 Dashboard</a>
     <a href="view_patients.php">👩‍🍼 View Patients</a>
-    <a href="appointments.php">📅 Appointments</a>
+    <a href="view_appointments.php">📅 Appointments</a>
     <a href="reports.php">📊 Reports</a>
     <a href="payments.php">💰 Payments</a>
+    <a href="login.php">🔐 Login</a>
+<a href="logout.php">🚪 Logout</a>
   </nav>
 
   <!-- Welcome Section -->
@@ -134,7 +170,7 @@ require_role('therapist');
       <p>Access patient profiles, notes, and mood history.</p>
     </a>
 
-    <a href="appointments.php" class="feature-card">
+    <a href="view_appointments.php" class="feature-card">
       <div class="feature-icon">📅</div>
       <h3>Appointments</h3>
       <p>View and manage upcoming sessions.</p>

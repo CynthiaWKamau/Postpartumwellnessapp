@@ -123,8 +123,8 @@
 
     .form-group button:hover {
       background-color: #b03060;
-    }
-
+    
+}
     .footer-note {
       text-align: center;
       font-size: 0.9rem;
@@ -135,8 +135,8 @@
 </head>
 <body>
  <!-- Navigation -->
-  <nav class="navbar">
-    <a href="postpartummother.php">🏠 Main Page</a>
+<nav class="navbar">
+<a href="postpartummother.php">🏠 Main Page</a>
 <a href="mood_tracker.php">🧠 Mood Tracker</a>
 <a href="journal.php">📔 Journal</a>
 <a href="subscribe.php">💳 Subscription</a>
@@ -183,7 +183,7 @@
             <option>05:00 PM</option>
           </select>
         </div>
-
+        
         <div class="form-group">
           <label for="notes">Anything you'd like your therapist to know?</label>
           <textarea id="notes" name="notes" placeholder="Your message..."></textarea>
