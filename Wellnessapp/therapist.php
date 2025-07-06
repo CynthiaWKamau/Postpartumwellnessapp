@@ -114,7 +114,7 @@ require_role('therapist');
   <!-- Navbar -->
   <nav class="navbar">
     <a href="therapist_dashboard.php">🏠 Dashboard</a>
-    <a href="patients.php">👩‍🍼 View Patients</a>
+    <a href="view_patients.php">👩‍🍼 View Patients</a>
     <a href="appointments.php">📅 Appointments</a>
     <a href="reports.php">📊 Reports</a>
     <a href="payments.php">💰 Payments</a>
@@ -128,7 +128,7 @@ require_role('therapist');
 
   <!-- Functional Cards -->
   <section class="features">
-    <a href="patients.php" class="feature-card">
+    <a href="view_patients.php" class="feature-card">
       <div class="feature-icon">👩‍🍼</div>
       <h3>Patient Info</h3>
       <p>Access patient profiles, notes, and mood history.</p>
