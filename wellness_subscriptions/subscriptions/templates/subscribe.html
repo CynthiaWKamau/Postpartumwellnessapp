@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,13 +144,14 @@
 <body>
   <!-- Navigation -->
   <nav class="navbar">
-    <a href="postpartummother.php">🏠 Main Page</a>
-<a href="mood_tracker.php">🧠 Mood Tracker</a>
-<a href="journal.php">📔 Journal</a>
-<a href="subscribe.php">💳 Subscription</a>
-<a href="book_appointment.php">📅 Book Appointment</a>
-<a href="login.php">🔐 Login</a>
-<a href="logout.php">🚪 Logout</a>
+<a href="{% url 'postpartummother' %}">🏠 Main Page</a>
+<a href="{% url 'mood_tracker' %}">🧠 Mood Tracker</a>
+<a href="{% url 'journal' %}">📔 Journal</a>
+<a href="{% url 'subscribe' %}">💳 Subscription</a>
+<a href="{% url 'book_appointment' %}">📅 Book Appointment</a>
+<a href="{% url 'login' %}">🔐 Login</a>
+<a href="{% url 'logout' %}">🚪 Logout</a>
+
 
   </nav>
 
@@ -185,7 +187,7 @@
         <li>✔ Weekly expert tips</li>
         <li>✔ Access to member-only community Q&A threads</li>
       </ul>
-      <form class="subscription-form" data-plan="basic">
+      <form class="subscription-form" data-plan="premium">
         <input type="hidden" name="plan" value="premium">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="tel" name="phone" placeholder="254XXXXXXXXX" required>
@@ -204,7 +206,7 @@
         <li>✔ Private mother’s network group (Pro-only)</li>
         <li>✔ Add partner access (father or caregiver)</li>
       </ul>
-     <form class="subscription-form" data-plan="basic">
+     <form class="subscription-form" data-plan="pro">
         <input type="hidden" name="plan" value="pro">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="tel" name="phone" placeholder="254XXXXXXXXX" required>
