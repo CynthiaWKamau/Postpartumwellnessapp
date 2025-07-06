@@ -41,9 +41,9 @@ def initiate_payment(request):
 
             # Set amounts based on plan
             plan_amounts = {
-                'basic': 2000,
-                'premium': 5000,
-                'pro': 10000
+                'basic': 1000,
+                'premium': 2500,
+                'pro': 5000
             }
             amount = plan_amounts.get(plan, 0)
 
@@ -89,6 +89,9 @@ def initiate_payment(request):
 
             stk_url = f"{base_url}/mpesa/stkpush/v1/processrequest"
             response = requests.post(stk_url, json=payload, headers=headers)
+            
+            print("📩 STK Push Response:")
+            print(json.dumps(response.json(), indent=4))
 
             return JsonResponse(response.json())
 
