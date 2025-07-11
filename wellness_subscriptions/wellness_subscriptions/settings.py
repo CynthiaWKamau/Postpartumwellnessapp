@@ -45,10 +45,9 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+          'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
+
 }
 
 MIDDLEWARE = [
@@ -86,11 +85,11 @@ WSGI_APPLICATION = 'wellness_subscriptions.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'wellness_app_db',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'wellness_app_db',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
@@ -141,7 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DARAJA_CONSUMER_KEY = '15sTBlHmq8RR5Tgb47YXHc4CaJ9NsMKiCKBMkNgc4OiyOR1G'
 DARAJA_CONSUMER_SECRET = 'p0B6ahZVgwVpizREZU5F4ayo8jx5Y4BkLcCG1ZQuIyyyAsmgqGdImj1UJl1v2l8I'
-DARAJA_PASSKEY = 'N/A'
+DARAJA_PASSKEY = ''
 DARAJA_SHORTCODE = '174379'  
 DARAJA_CALLBACK_URL = "https://5037-197-237-61-190.ngrok-free.app/api/payment/callback/"
 

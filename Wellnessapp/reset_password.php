@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 //Get token from URL or POST
-$token = $_GET['token'] ?? '';
+$token = $_POST['token'] ?? $_GET['token'] ?? '';
 $success = '';
 $error = '';
 
@@ -16,6 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($new_password !== $confirm_password) {
         $error = "❌ Passwords do not match.";
+        } elseif (strlen($new_password) < 8) {
+        $error = "❌ Password must be at least 8 characters long.";
     } else {
         // Find user with the token
        $stmt = $conn->prepare("SELECT email FROM users WHERE reset_token = ? AND token_expiry >= NOW()");
@@ -29,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Update password and clear token
             $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-            $update = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
+            $update = $conn->prepare("UPDATE users SET password = ?,  reset_token = NULL, token_expiry = NULL WHERE email = ?");
             $update->bind_param("ss", $hashed_password, $email);
 
         if ($update->execute()) {
