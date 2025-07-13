@@ -173,6 +173,13 @@ require_role('therapist');
       <h3>Appointments</h3>
       <p>View and manage upcoming sessions.</p>
     </a>
+  <a href="generate_therapist_report.php" target="_blank" class="feature-card">
+  <div class="feature-icon">📄</div>
+  <h3>Therapist Report</h3>
+  <p>Download a detailed PDF of patient journals, moods, and appointments.</p>
+</a>
+
+
   </section>
 
 </body>

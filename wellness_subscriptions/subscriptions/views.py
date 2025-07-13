@@ -13,8 +13,6 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
-from subscriptions.models import Subscription
-from django.utils import timezone
 
 def subscribe_view(request):
      return render(request, 'subscribe.html') 
@@ -30,9 +28,14 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
+
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def initiate_payment(request):
+    user = request.user if request.user.is_authenticated else None
+
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
@@ -53,7 +56,7 @@ def initiate_payment(request):
             if not amount:
                 raise Exception("Invalid subscription plan selected.")
 
-            # Safaricom credentials
+            # Safaricom credentials from settings.py
             consumer_key = settings.DARAJA_CONSUMER_KEY
             consumer_secret = settings.DARAJA_CONSUMER_SECRET
             passkey = settings.DARAJA_PASSKEY
@@ -63,17 +66,19 @@ def initiate_payment(request):
 
             # Get access token
             auth_url = f'{base_url}/oauth/v1/generate?grant_type=client_credentials'
-            res = requests.get(auth_url, auth=(consumer_key, consumer_secret))
+            auth = (consumer_key, consumer_secret)
+            res = requests.get(auth_url, auth=auth)
             access_token = res.json().get('access_token')
+
             if not access_token:
                 raise Exception("Failed to retrieve M-Pesa access token.")
 
-            # Timestamp and password
+            # Generate timestamp and password
             timestamp = timezone.now().strftime('%Y%m%d%H%M%S')
             password = base64.b64encode(
                 f'{business_short_code}{passkey}{timestamp}'.encode()).decode()
 
-            # STK Push Payload
+            # Prepare STK Push payload
             payload = {
                 "BusinessShortCode": business_short_code,
                 "Password": password,
@@ -84,7 +89,7 @@ def initiate_payment(request):
                 "PartyB": business_short_code,
                 "PhoneNumber": phone_number,
                 "CallBackURL": callback_url,
-                "AccountReference": "Postpartum Wellness Payments",
+                "AccountReference": "Wellness Subscription",
                 "TransactionDesc": f"{plan.capitalize()} Plan Subscription"
             }
 
@@ -100,16 +105,15 @@ def initiate_payment(request):
             print("📩 STK Push Response:")
             print(json.dumps(response_data, indent=4))
 
-            user = request.user if request.user.is_authenticated else None
-            # Save subscription
+            # Save subscription with Pending status
             Subscription.objects.create(
-                user=user,
-                phone_number='254712345678',
-                amount=1000,
-                plan='basic',
+                user=request.user if request.user.is_authenticated else None,
+                phone_number=phone_number,
+                amount=amount,
+                plan=plan,
                 payment_status='Pending',
-                checkout_request_id='test-checkout-id',
-                merchant_request_id='test-merchant-id',
+                checkout_request_id=response_data.get('CheckoutRequestID'),
+                merchant_request_id=response_data.get('MerchantRequestID'),
                 transaction_date=timezone.now(),
                 mpesa_receipt_number=""
             )
@@ -123,51 +127,52 @@ def initiate_payment(request):
 
     return HttpResponseNotAllowed(['POST'])
 
+
+   # Handles payment confirmation sent by Safaricom after STK push is completed
 @csrf_exempt 
 def payment_callback(request):
     if request.method == 'POST':
         try:
-            print("✅ CALLBACK RECEIVED")
-            print("🧾 Raw Body:", request.body.decode())
-
+            # Parse the incoming JSON request from Safaricom
             data = json.loads(request.body)
-            callback_data = data.get('Body', {}).get('stkCallback', {})
-            print("📦 Callback Data:", json.dumps(callback_data, indent=4))
 
+            # Extract the core callback data
+            callback_data = data.get('Body', {}).get('stkCallback', {})
+
+            # Check the result of the transaction (0 means success)
             result_code = callback_data.get('ResultCode')
+
             if result_code == 0:
+                # If transaction was successful, extract metadata
                 metadata = callback_data.get('CallbackMetadata', {}).get('Item', [])
+
+                # Convert metadata into a flat dictionary for easy access
                 transaction_data = {item['Name']: item.get('Value') for item in metadata}
 
+                # Retrieve transaction details
                 receipt = transaction_data.get('MpesaReceiptNumber')
                 amount = transaction_data.get('Amount')
                 phone = transaction_data.get('PhoneNumber')
-                raw_date = str(transaction_data.get('TransactionDate'))
-
-                from datetime import datetime
-                transaction_date = datetime.strptime(raw_date, "%Y%m%d%H%M%S")
-
+                transaction_date = transaction_data.get('TransactionDate')
                 checkout_request_id = callback_data.get('CheckoutRequestID')
                 merchant_request_id = callback_data.get('MerchantRequestID')
 
-                print("🔍 Looking up subscription for:", checkout_request_id)
+                # Update the existing Subscription record
                 subscription = Subscription.objects.filter(checkout_request_id=checkout_request_id).first()
                 if subscription:
                     subscription.mpesa_receipt_number = receipt
                     subscription.amount = amount
+                    subscription.transaction_date = timezone.now()
                     subscription.merchant_request_id = merchant_request_id
-                    subscription.transaction_date = transaction_date
                     subscription.payment_status = 'Paid'
                     subscription.save()
-                    print("✅ Subscription updated")
-                else:
-                    print("❌ No subscription found for:", checkout_request_id)
 
+            # Always respond with ResultCode 0 to acknowledge Safaricom callback
             return JsonResponse({"ResultCode": 0, "ResultDesc": "Accepted"})
 
         except Exception as e:
-            import traceback
-            traceback.print_exc()
+            # If anything goes wrong, return an error response
             return JsonResponse({'error': str(e)}, status=400)
 
+    # Reject non-POST requests (callback should only use POST)
     return HttpResponseNotAllowed(['POST'])
