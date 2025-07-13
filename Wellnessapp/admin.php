@@ -204,6 +204,10 @@ require_role('admin');
   <div class="cta-button">
     <a href="manage_users.php">Start Managing Records ⚙️</a>
   </div>
+  <div class="cta-button">
+    <a href="generate_admin_report.php">📄 Download Admin Report (PDF)</a>
+</div>
+
 
 </body>
 </html>
