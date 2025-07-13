@@ -13,6 +13,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
+from subscriptions.models import Subscription
+from django.utils import timezone
 
 def subscribe_view(request):
      return render(request, 'subscribe.html') 
@@ -98,15 +100,16 @@ def initiate_payment(request):
             print("📩 STK Push Response:")
             print(json.dumps(response_data, indent=4))
 
+            user = request.user if request.user.is_authenticated else None
             # Save subscription
             Subscription.objects.create(
-                user=request.user,
-                phone_number=phone_number,
-                amount=amount,
-                plan=plan,
+                user=user,
+                phone_number='254712345678',
+                amount=1000,
+                plan='basic',
                 payment_status='Pending',
-                checkout_request_id=response_data.get('CheckoutRequestID'),
-                merchant_request_id=response_data.get('MerchantRequestID'),
+                checkout_request_id='test-checkout-id',
+                merchant_request_id='test-merchant-id',
                 transaction_date=timezone.now(),
                 mpesa_receipt_number=""
             )
@@ -124,10 +127,14 @@ def initiate_payment(request):
 def payment_callback(request):
     if request.method == 'POST':
         try:
+            print("✅ CALLBACK RECEIVED")
+            print("🧾 Raw Body:", request.body.decode())
+
             data = json.loads(request.body)
             callback_data = data.get('Body', {}).get('stkCallback', {})
-            result_code = callback_data.get('ResultCode')
+            print("📦 Callback Data:", json.dumps(callback_data, indent=4))
 
+            result_code = callback_data.get('ResultCode')
             if result_code == 0:
                 metadata = callback_data.get('CallbackMetadata', {}).get('Item', [])
                 transaction_data = {item['Name']: item.get('Value') for item in metadata}
@@ -135,23 +142,32 @@ def payment_callback(request):
                 receipt = transaction_data.get('MpesaReceiptNumber')
                 amount = transaction_data.get('Amount')
                 phone = transaction_data.get('PhoneNumber')
-                transaction_date = transaction_data.get('TransactionDate')
+                raw_date = str(transaction_data.get('TransactionDate'))
+
+                from datetime import datetime
+                transaction_date = datetime.strptime(raw_date, "%Y%m%d%H%M%S")
+
                 checkout_request_id = callback_data.get('CheckoutRequestID')
                 merchant_request_id = callback_data.get('MerchantRequestID')
 
+                print("🔍 Looking up subscription for:", checkout_request_id)
                 subscription = Subscription.objects.filter(checkout_request_id=checkout_request_id).first()
                 if subscription:
                     subscription.mpesa_receipt_number = receipt
                     subscription.amount = amount
                     subscription.merchant_request_id = merchant_request_id
-                    subscription.transaction_date = timezone.now()
+                    subscription.transaction_date = transaction_date
                     subscription.payment_status = 'Paid'
                     subscription.save()
+                    print("✅ Subscription updated")
+                else:
+                    print("❌ No subscription found for:", checkout_request_id)
 
             return JsonResponse({"ResultCode": 0, "ResultDesc": "Accepted"})
 
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             return JsonResponse({'error': str(e)}, status=400)
 
     return HttpResponseNotAllowed(['POST'])
-
