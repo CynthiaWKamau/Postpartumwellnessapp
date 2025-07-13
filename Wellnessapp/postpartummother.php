@@ -186,39 +186,39 @@ require_role('postpartum mother');
     </section>
 
     <!-- Features Section -->
-   <section class="features">
-    <a href="mood_tracker.php">
-        <div class="feature-card">
-            <div class="feature-icon">💗</div>
-            <h3>Track Your Mood</h3>
-            <p>Record your daily feelings and observe your emotional patterns over time.</p>
-        </div>
-    </a>
+    <section class="features">
+        <a href="mood_tracker.php">
+            <div class="feature-card">
+                <div class="feature-icon">💗</div>
+                <h3>Track Your Mood</h3>
+                <p>Record your daily feelings and observe your emotional patterns over time.</p>
+            </div>
+        </a>
 
-    <a href="journal.php">
-        <div class="feature-card">
-            <div class="feature-icon">📖</div>
-            <h3>Journal Entries</h3>
-            <p>Write your heart out — express, reflect, and heal in a secure journal.</p>
-        </div>
-    </a>
+        <a href="journal.php">
+            <div class="feature-card">
+                <div class="feature-icon">📖</div>
+                <h3>Journal Entries</h3>
+                <p>Write your heart out — express, reflect, and heal in a secure journal.</p>
+            </div>
+        </a>
 
-    <a href="book_appointment.php">
-        <div class="feature-card">
-            <div class="feature-icon">📅</div>
-            <h3>Book a Therapist</h3>
-            <p>Connect with professionals ready to listen and support your journey.</p>
-        </div>
-    </a>
+        <a href="book_appointment.php">
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Book a Therapist</h3>
+                <p>Connect with professionals ready to listen and support your journey.</p>
+            </div>
+        </a>
 
-    <a href="http://127.0.0.1:8000/api/subscribe/" target="_blank">
-        <div class="feature-card">
-            <div class="feature-icon">💳</div>
-            <h3>Manage Subscription</h3>
-            <p>Choose or update your care plan and explore the support that's right for you.</p>
-        </div>
-    </a>
-</section>
+        <a href="http://127.0.0.1:8000/api/subscribe/" target="_blank">
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3>Manage Subscription</h3>
+                <p>Choose or update your care plan and explore the support that's right for you.</p>
+            </div>
+        </a>
+    </section>
 
 
     <!-- CTA Button -->
