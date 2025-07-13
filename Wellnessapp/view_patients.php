@@ -13,110 +13,114 @@ if (!$result) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Therapist Dashboard - Patients</title>
     <style>
     body {
-      margin: 0;
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #fff0f6, #fdf7fa);
-      color: #4a3b47;
+        margin: 0;
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        background: linear-gradient(to bottom right, #fff0f6, #fdf7fa);
+        color: #4a3b47;
     }
 
-.navbar {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  padding: 1rem;
-  background: linear-gradient(to right, #f99fc9, #d8b0f9);
-  border-bottom: 3px solid #fff0f8;
-  border-radius: 0 0 16px 16px;
-  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.25);
-}
-
-.nav-item {
-  text-decoration: none;
-  color: white;
-  font-weight: 600;
-  font-size: 17px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  transition: background 0.3s ease;
-}
-
-.nav-item:hover {
-  background-color: #f772a7;
-}
- .navbar {
-      background-color: #f9c5d1;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-      border-bottom: 2px solid #fcdce5;
-    }
     .navbar {
-      background-color: #f9c5d1;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-      border-bottom: 2px solid #fcdce5;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        padding: 1rem;
+        background: linear-gradient(to right, #f99fc9, #d8b0f9);
+        border-bottom: 3px solid #fff0f8;
+        border-radius: 0 0 16px 16px;
+        box-shadow: 0 5px 15px rgba(255, 182, 193, 0.25);
+    }
+
+    .nav-item {
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+        font-size: 17px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: background 0.3s ease;
+    }
+
+    .nav-item:hover {
+        background-color: #f772a7;
+    }
+
+    .navbar {
+        background-color: #f9c5d1;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        border-bottom: 2px solid #fcdce5;
+    }
+
+    .navbar {
+        background-color: #f9c5d1;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        border-bottom: 2px solid #fcdce5;
     }
 
     .navbar a {
-      text-decoration: none;
-      color: #4a3b47;
-      font-weight: 600;
-      background-color: #fff0f6;
-      padding: 10px 20px;
-      border-radius: 30px;
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 2px 6px rgba(255, 192, 203, 0.3);
+        text-decoration: none;
+        color: #4a3b47;
+        font-weight: 600;
+        background-color: #fff0f6;
+        padding: 10px 20px;
+        border-radius: 30px;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 2px 6px rgba(255, 192, 203, 0.3);
     }
 
     .navbar a:hover {
-      background-color: #ffb6c1;
-      color: white;
+        background-color: #ffb6c1;
+        color: white;
     }
 
 
-  .patient-card {
-    background: white;
-    padding: 1.5rem 2rem;
-    margin: 2rem auto;
-    border-left: 6px solid #ba68c8;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(106, 27, 154, 0.1);
-    transition: transform 0.2s ease;
-    max-width: 800px;  /* Make it smaller */
-}
+    .patient-card {
+        background: white;
+        padding: 1.5rem 2rem;
+        margin: 2rem auto;
+        border-left: 6px solid #ba68c8;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(106, 27, 154, 0.1);
+        transition: transform 0.2s ease;
+        max-width: 800px;
+        /* Make it smaller */
+    }
 
-.card-header {
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .card-header {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-.toggle-arrow {
-    transition: transform 0.3s ease;
-    font-size: 1.2rem;
-}
+    .toggle-arrow {
+        transition: transform 0.3s ease;
+        font-size: 1.2rem;
+    }
 
-.rotate {
-    transform: rotate(90deg);
-}
+    .rotate {
+        transform: rotate(90deg);
+    }
 
-.card-body {
-    display: none;
-    margin-top: 1rem;
-}
+    .card-body {
+        display: none;
+        margin-top: 1rem;
+    }
 
 
- h1 {
+    h1 {
         text-align: center;
         color: #6a1b9a;
         font-size: 2rem;
@@ -167,20 +171,21 @@ if (!$result) {
         font-style: italic;
         color: #999;
     }
-</style>
+    </style>
 
 </head>
-<body>
-      <!-- Navbar -->
-  <nav class="navbar">
-    <a href="therapist.php">🏠 Dashboard</a>
-    <a href="view_patients.php">👩‍🍼 View Patients</a>
-    <a href="view_appointments.php">📅 Appointments</a>
-    <a href="login.php">🔐 Login</a>
-    <a href="index.php">🚪 Logout</a>
-  </nav>
 
-<?php while ($user = $result->fetch_assoc()): ?>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="therapist.php">🏠 Dashboard</a>
+        <a href="view_patients.php">👩‍🍼 View Patients</a>
+        <a href="view_appointments.php">📅 Appointments</a>
+        <a href="login.php">🔐 Login</a>
+        <a href="index.php">🚪 Logout</a>
+    </nav>
+
+    <?php while ($user = $result->fetch_assoc()): ?>
     <div class="patient-card">
         <h2><?= htmlspecialchars($user['fullname']) ?> (<?= htmlspecialchars($user['email']) ?>)</h2>
 
@@ -241,6 +246,7 @@ if (!$result) {
             </ul>
         </div>
     </div>
-<?php endwhile; ?>
+    <?php endwhile; ?>
 </body>
+
 </html>
