@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (empty($password)) {
         $login_error = "Please enter a password.";
     } else {
+        
         //process login
         $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
         if ($stmt === false) {

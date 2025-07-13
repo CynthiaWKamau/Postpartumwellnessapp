@@ -2,7 +2,56 @@
 <?php
 $role = $_GET['role'] ?? $_POST['role'] ?? '';
 $signup_error = '';
-?>
+$signup_success = '';
+
+
+// Connect to MySQL database
+require 'db_connection.php';
+
+ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+        if (isset($_POST["fullname"], $_POST["national_id"], $_POST["email"], $_POST["password"], $_POST["confirm_password"],$_POST["role"])) {
+
+        $fullname = trim($_POST["fullname"]);
+        $national_id = trim($_POST["national_id"]);
+        $email = trim($_POST["email"]);
+        $password = $_POST["password"];
+        $confirm_password = $_POST["confirm_password"];
+        $role = $_POST["role"];
+        $created_at = date("Y-m-d H:i:s");
+
+            //Password match validation
+            if ($password !== $confirm_password) {
+              $signup_error = "Passwords do not match.";
+              
+            } else {
+            //Hash password for security
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            //Check if username or email already exists 
+                $stmt = $conn->prepare("SELECT * FROM users WHERE national_id=? OR email=?");
+                $stmt->bind_param("ss", $national_id, $email);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+               if ($result->num_rows > 0) {
+                $signup_error = "National ID or Email already exists.";
+            } else {
+                    //Insert new user into database
+                    $stmt = $conn->prepare("INSERT INTO users (fullname, national_id, email, password, role,created_at) VALUES (?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("ssssss", $fullname, $national_id, $email, $hashed_password,$role, $created_at);
+
+                    if ($stmt->execute()) {
+                    $signup_success = "Signup successful! Redirecting to login...";
+                    echo "<script>setTimeout(() => { window.location.href = 'login.php'; }, 2000);</script>";
+                } else {
+                    $signup_error = "Registration failed. Please try again.";
+                }
+            }
+            $stmt->close();
+        }
+    }
+  }
+     ?>     
 
 <!DOCTYPE html>
 <html>
@@ -104,13 +153,25 @@ button[type="submit"]:hover {
     <div class="signup-container">
           <h2>Sign Up as <span style="color:#d63384"><?= htmlspecialchars(ucwords($role)) ?></span></h2>
         <br>
+        <?php if (!empty($signup_error)): ?>
+    <div style="color: #d8000c; background-color: #ffdddd; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+        <?= htmlspecialchars($signup_error) ?>
+    </div>
+<?php endif; ?>
+
+<?php if (!empty($signup_success)): ?>
+    <div style="color: #155724; background-color: #d4edda; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+        <?= htmlspecialchars($signup_success) ?>
+    </div>
+<?php endif; ?>
+
         <form action="signup.php" method="post" autocomplete="off">
 
             <label for="fullname">Full Name:</label>
             <input type="text" name="fullname" id="fullname" required><br>
 
-            <label for="id">Id:</label>
-            <input type="text" name="id" id="id" required><br>
+            <label for="national_id">National Id/Passport Number:</label>
+            <input type="text" name="national_id" id="national_id" required><br>
 
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" required><br>
@@ -128,56 +189,8 @@ button[type="submit"]:hover {
         </form>
 
     </div>
-
-    <?php
-    
-// Connect to MySQL database
-require 'db_connection.php';
-
- if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-        if (isset($_POST["fullname"], $_POST["id"], $_POST["email"], $_POST["password"], $_POST["confirm_password"],$_POST["role"])) {
-
-        $fullname = trim($_POST["fullname"]);
-        $id = trim($_POST["id"]);
-        $email = trim($_POST["email"]);
-        $password = $_POST["password"];
-        $confirm_password = $_POST["confirm_password"];
-        $role = $_POST["role"];
-        $created_at = date("Y-m-d H:i:s");
-
-            //Password match validation
-            if ($password !== $confirm_password) {
-                echo "<script>alert('Passwords do not match');</script>";
-                exit();
-            } 
+                
             
-            //Hash password for security
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            //Check if username or email already exists 
-                $stmt = $conn->prepare("SELECT * FROM users WHERE id=? OR email=?");
-                $stmt->bind_param("ss", $id, $email);
-                $stmt->execute();
-                $result = $stmt->get_result();
-
-                if ($result->num_rows > 0) {
-                    echo "<script>alert('Username or Email has been taken');</script>";
-                } else {
-                    //Insert new user into database
-                    $stmt = $conn->prepare("INSERT INTO users (fullname, id, email, password, role,created_at) VALUES (?, ?, ?, ?, ?, ?)");
-                    $stmt->bind_param("ssssss", $fullname, $id, $email, $hashed_password,$role, $created_at);
-
-                    if ($stmt->execute()) {
-                       header("Location: login.php");
-                       exit();
-                    } else {
-                        echo "<script>alert('Registration Failed');</script>";
-                    }
-                }
-                $stmt->close();
-            }
-        }
-    ?>
 </body>
 
 </html>

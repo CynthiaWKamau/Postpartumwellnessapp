@@ -1,25 +1,5 @@
 <?php
 // forgot_password.php
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Forgot Password</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
-    <div class="login">
-        <h2>Reset Your Password</h2>
-      <h2>Forgot Your Password?</h2>
-<form action="forgot_password.php" method="post">
-    <label>Enter your registered email:</label>
-    <input type="email" name="email" required><br>
-    <button type="submit">Send Reset Link</button>
-</form>
-
-    </div>
-   <?php
 require 'db_connection.php';
 require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
@@ -40,12 +20,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result && $result->num_rows > 0) {
           $token = bin2hex(random_bytes(32));
-        $expiry = date("Y-m-d H:i:s", strtotime("+1 hour"));
+          date_default_timezone_set('Africa/Nairobi'); 
+
+          $expiry = (new DateTime('+1 hour'))->format('Y-m-d H:i:s');
+
 
           // Save token
         $update = $conn->prepare("UPDATE users SET reset_token = ?, token_expiry = ? WHERE email = ?");
         $update->bind_param("sss", $token, $expiry, $email);
-        $update->execute();
+
+
+        if ($update->execute()) {
+    echo "✅ Token & expiry saved successfully.<br>";
+      } else {
+    echo "❌ Failed to save token: " . $conn->error;
+      }
+
+
 
          // Email reset link
         $reset_link = "http://localhost/Postpartumwellnessapp/Wellnessapp/reset_password.php?token=$token";
@@ -77,6 +68,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>alert('Email not found'); window.history.back();</script>";
     }
 }
+
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login">
+        <h2>Reset Your Password</h2>
+      <h2>Forgot Your Password?</h2>
+<form action="forgot_password.php" method="post">
+    <label>Enter your registered email:</label>
+    <input type="email" name="email" required><br>
+    <button type="submit">Send Reset Link</button>
+</form>
+
+    </div>
+ 
 </body>
 </html>

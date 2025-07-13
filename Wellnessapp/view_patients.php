@@ -208,7 +208,7 @@ if (!$result) {
             <h4>💳 Subscriptions</h4>
             <ul>
                 <?php
-                $sub_sql = "SELECT amount, payment_status, transaction_date FROM subscriptions WHERE user_id = $user_id ORDER BY transaction_date DESC";
+                $sub_sql = "SELECT amount, payment_status, transaction_date FROM subscriptions_subscription WHERE user_id = $user_id ORDER BY transaction_date DESC";
                 $subs = $conn->query($sub_sql);
                 if ($subs && $subs->num_rows > 0) {
                     while ($s = $subs->fetch_assoc()) {

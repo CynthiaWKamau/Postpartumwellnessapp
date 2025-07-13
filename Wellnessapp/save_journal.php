@@ -15,8 +15,8 @@ $entry = $_POST['entry'] ?? '';
 $date_logged = date("Y-m-d H:i:s");
 
 if (!empty(trim($entry))) {
-    $stmt = $conn->prepare("INSERT INTO journal_entries (user_id, entry, date_logged) VALUES (?, ?, ?)");
-    $stmt->bind_param("iss", $user_id, $entry, $date_logged);
+    $stmt = $conn->prepare("INSERT INTO journal_entries (national_id, entry, date_logged) VALUES (?, ?, ?)");
+    $stmt->bind_param("iss", $national_id, $entry, $date_logged);
 
     if ($stmt->execute()) {
         header("Location: journal.php?success=1");
