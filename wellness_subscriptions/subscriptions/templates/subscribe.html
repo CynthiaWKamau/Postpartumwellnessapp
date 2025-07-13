@@ -175,7 +175,9 @@
         <input type="hidden" name="plan" value="basic">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="tel" name="phone" placeholder="254XXXXXXXXX" required>
-        <button type="submit">Choose Basic</button>
+       <button type="submit">Subscribe</button>
+
+
       </form>
     </div>
 
@@ -192,7 +194,9 @@
         <input type="hidden" name="plan" value="premium">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="tel" name="phone" placeholder="254XXXXXXXXX" required>
-        <button type="submit">Choose Premium</button>
+        <button type="submit">Subscribe</button>
+
+
       </form>
     </div>
 
@@ -211,40 +215,48 @@
         <input type="hidden" name="plan" value="pro">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="tel" name="phone" placeholder="254XXXXXXXXX" required>
-        <button type="submit">Choose Pro</button>
+      <button type="submit">Subscribe</button>
+
+
       </form>
     </div>
 
   </div>
 
-  <script>
-  document.querySelectorAll('.subscription-form').forEach(form => {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
+ <script>
+  // Wait for DOM to load
+  document.addEventListener("DOMContentLoaded", () => {
+    const forms = document.querySelectorAll(".subscription-form");
 
-      const plan = this.dataset.plan;
-      const phone = this.querySelector('input[name="phone"]').value;
+    forms.forEach(form => {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      fetch('/api/initiate-payment/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          phone_number: phone,
-          plan: plan
+        const plan = this.dataset.plan;
+        const phone = this.querySelector('input[name="phone"]').value;
+
+        fetch("/api/initiate-payment/", {
+          method: "POST",
+        headers: {
+         "Content-Type": "application/json",
+          "Authorization": "Token " + localStorage.getItem("authToken")  // assuming you stored it this way
+     },
+          body: JSON.stringify({ phone_number: phone, plan: plan })
         })
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        if (data.CustomerMessage) {
-          alert(data.CustomerMessage);
-        } else {
-          alert("STK push sent or simulated.");
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert("Something went wrong.");
+        .then(res => res.json())
+        .then(data => {
+          if (data.ResponseDescription) {
+            alert("✅ " + data.ResponseDescription);
+          } else if (data.error) {
+            alert("❌ Error: " + data.error);
+          } else {
+            alert("⚠️ Unexpected response. Please try again.");
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          alert("❌ Failed to initiate payment. Try again.");
+        });
       });
     });
   });

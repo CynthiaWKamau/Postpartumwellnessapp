@@ -37,6 +37,8 @@ $result = $stmt->get_result();
 </head>
 
 <body>
+  <body>
+
     <!-- Navigation -->
   <nav class="navbar">
 <a href="postpartummother.php">🏠 Main Page</a>
@@ -119,9 +121,9 @@ $result = $stmt->get_result();
     <!-- Save Button -->
       <div class="save-button">
       <button type="submit">Save Today's Mood 💕</button>
-     <a href="journal.php" class="journal-link">Reflect in Journal ✍️</a>
      </div>
     </div>
+  
    </form>
 </div>
 
