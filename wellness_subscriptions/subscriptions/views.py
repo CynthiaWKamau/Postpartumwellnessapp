@@ -13,6 +13,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
+from django.views.decorators.http import require_POST
+
 
 def subscribe_view(request):
      return render(request, 'subscribe.html') 
@@ -29,10 +31,8 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-
-
-@api_view(['POST'])
-@permission_classes([AllowAny])
+@require_POST
+@csrf_exempt
 def initiate_payment(request):
     user = request.user if request.user.is_authenticated else None
 

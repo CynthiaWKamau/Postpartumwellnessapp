@@ -198,14 +198,19 @@ require_role('admin');
       </div>
     </a>
 
+       <a href="generate_admin_report.php">
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Reports</h3>
+        <p>Generate a PDF report of all users across the system for record keeping.</p>
+      </div>
+    </a>
   </section>
 
   <!-- CTA Button -->
   <div class="cta-button">
     <a href="manage_users.php">Start Managing Records ⚙️</a>
-  </div>
-  <div class="cta-button">
-    <a href="generate_admin_report.php">📄 Download Admin Report (PDF)</a>
+  
 </div>
 
 

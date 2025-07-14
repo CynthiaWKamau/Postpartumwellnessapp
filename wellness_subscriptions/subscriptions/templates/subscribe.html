@@ -224,7 +224,6 @@
   </div>
 
  <script>
-  // Wait for DOM to load
   document.addEventListener("DOMContentLoaded", () => {
     const forms = document.querySelectorAll(".subscription-form");
 
@@ -236,17 +235,19 @@
         const phone = this.querySelector('input[name="phone"]').value;
 
         fetch("/api/initiate-payment/", {
-          method: "POST",
-        headers: {
-         "Content-Type": "application/json",
-          "Authorization": "Token " + localStorage.getItem("authToken")  // assuming you stored it this way
-     },
-          body: JSON.stringify({ phone_number: phone, plan: plan })
-        })
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ phone_number: phone, plan: plan })
+})
+
         .then(res => res.json())
         .then(data => {
+          console.log("📦 Payment Response:", data); // For debugging
+
           if (data.ResponseDescription) {
-            alert("✅ " + data.ResponseDescription);
+            alert("✅ " + data.CustomerMessage);
           } else if (data.error) {
             alert("❌ Error: " + data.error);
           } else {
@@ -261,6 +262,5 @@
     });
   });
 </script>
-
 </body>
 </html>
